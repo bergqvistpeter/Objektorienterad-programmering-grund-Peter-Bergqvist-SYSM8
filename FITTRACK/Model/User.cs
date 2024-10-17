@@ -12,13 +12,17 @@ namespace FITTRACK.Model
         public string SecurityQuestion;
         public string SecurityAnswer;
 
-        public User(string username, string password) : base(username, password)
+        public User(string username, string password, string country, string securityQuestion, string securityAnswer) : base(username, password)
         {
+            this.Country = country;
+            this.SecurityQuestion = securityQuestion;
+            this.SecurityAnswer = securityAnswer;
         }
 
         public override void SignIn()
         {
-            if () { }
+            
         }
+        public void ResetPassword(string securityAnswer) { }
     }
 }
