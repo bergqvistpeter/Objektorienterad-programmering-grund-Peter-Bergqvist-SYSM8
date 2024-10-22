@@ -8,8 +8,8 @@ namespace FITTRACK.Model
 {
     public abstract class Person
     {   //Egenskaper
-        public string Username;
-        public string Password;
+        public string Username { get; set; }
+        public string Password { get; set; }
         //Konstruktor
         public Person (string username, string password) 
         { 

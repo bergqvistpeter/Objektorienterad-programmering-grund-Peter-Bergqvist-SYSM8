@@ -8,12 +8,13 @@ namespace FITTRACK.Model
 {
     public abstract class Workout
     {
-        public DateTime Date;
-        public string Type;
-        public TimeSpan Duration;
-        public double CaloriesBurned;
-        public string Notes;
-
+        //Egenskaper
+        public DateTime Date { get; set; }
+        public string Type { get; set; }
+        public TimeSpan Duration { get; set; }
+        public double CaloriesBurned { get; set; }
+        public string Notes { get; set; }
+        //Konstruktor
         public Workout(DateTime date, string type, TimeSpan duration, double CaloriesBurned, string notes) 
         { 
             this.Date = date;
@@ -22,5 +23,8 @@ namespace FITTRACK.Model
             this.CaloriesBurned = CaloriesBurned;
             this.Notes = notes;
         }
+        //Metod
+        public abstract double CalculateCaloriesBurnd(); 
+        
     }
 }
