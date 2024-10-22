@@ -18,6 +18,6 @@ namespace FITTRACK.Model
         
         }
         //Metod
-        public abstract void SignIn();
+        public abstract void SignIn(string username, string password);
     }
 }

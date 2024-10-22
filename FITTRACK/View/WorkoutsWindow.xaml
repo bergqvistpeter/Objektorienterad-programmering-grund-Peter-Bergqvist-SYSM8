@@ -1,0 +1,64 @@
+﻿<Window x:Class="FITTRACK.View.WorkoutsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FITTRACK.View"
+        mc:Ignorable="d"
+        Title="WorkoutsWindow" Height="450" Width="800">
+    <Grid Background="LightGray">
+        <StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Du är inloggad som"  Height="30" Width="140" FontWeight="Bold" FontSize="14"/>
+                <TextBlock Height="30" Width="80"/>
+                <Button Height="30" Width="80" Content="Admin" FontWeight="Bold" FontSize="14"/>
+                <Button Height="30" Width="80" Content="Info" FontWeight="Bold" FontSize="14"/>
+            </StackPanel>
+            <Grid Width="800" Height="30">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Content="Lägg till Träning" FontSize="15" FontWeight="Bold" Background="Crimson"/>
+                <Button Grid.Column="1" Content="Ta bort Träning" FontSize="15" FontWeight="Bold" Background="Crimson"/>
+                <Button Grid.Column="2" Content="Tränings Information" FontSize="15" FontWeight="Bold" Background="Crimson"/>
+                <Button Grid.Column="3" Content="Redigera Konto"  FontSize="15" FontWeight="Bold" Background="Crimson"/>
+                <Button Grid.Column="4" Content="Logga ut"  FontSize="15" FontWeight="Bold" Background="Crimson"/>
+
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="7*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+                
+                <DataGrid CanUserAddRows="False" CanUserDeleteRows="False" AutoGenerateColumns="False" ItemsSource="{Binding Workouts}" SelectedItem="{Binding SelectedWorkout}" FontSize="16" FontWeight="Bold" Height="300">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Datum" Binding="{Binding Date}" Width="4*" />
+                        <DataGridTextColumn Header="Typ" Binding="{Binding SerieNbr}" Width="4*" />
+
+                    </DataGrid.Columns>
+
+                </DataGrid>
+                <StackPanel Grid.Column="1">
+                    <Label Content="Datum" Height="30" FontWeight="Bold" FontSize="16"/>
+                    <TextBox Text="{Binding Workout.Date, UpdateSourceTrigger=PropertyChanged}" Height="30"/>
+                    <Label Content="Typ" Height="30" FontWeight="Bold" FontSize="16"/>
+                    <TextBox Text="{Binding Workout.Type, UpdateSourceTrigger=PropertyChanged}" Height="30"/>
+                </StackPanel>
+            </Grid>
+            <Grid Width="200" Height="30">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="7*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+                <ComboBox/>
+                <Button Grid.Column="1" Content="Sortera" HorizontalAlignment="Center" FontWeight="Bold" FontSize="16" Background="Crimson"/>
+            </Grid>
+            
+        </StackPanel>
+    </Grid>
+</Window>

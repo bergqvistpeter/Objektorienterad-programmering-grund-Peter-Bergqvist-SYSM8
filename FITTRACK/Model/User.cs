@@ -1,8 +1,10 @@
-﻿using System;
+﻿using FITTRACK.View;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace FITTRACK.Model
 {
@@ -22,9 +24,23 @@ namespace FITTRACK.Model
             this.Weight = weight;
         }
         //Metod
-        public override void SignIn()
+        public override void SignIn(string username, string password)
         {
-            
+            if (Password == password && Username == username)
+
+            {
+                WorkoutsWindow workoutsWindow = new WorkoutsWindow();
+                workoutsWindow.Show();
+                MessageBox.Show($"Välkommen{Username}","Välkommen!", MessageBoxButton.OK, MessageBoxImage.None);
+                
+            }
+
+            else 
+            {
+               MessageBox.Show("Felaktigt Username eller Password", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+
         }
         public void ResetPassword(string securityAnswer) 
         { 

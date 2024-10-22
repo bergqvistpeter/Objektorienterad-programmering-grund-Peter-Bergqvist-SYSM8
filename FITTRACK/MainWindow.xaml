@@ -6,13 +6,14 @@
         xmlns:local="clr-namespace:FITTRACK"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    
     <Grid Background="LightGray">
         <StackPanel>
             <Label Content="FitTrack" HorizontalAlignment="Center" FontSize="100" FontWeight="Bold" Foreground="Crimson" />
             <TextBlock Text="Username" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold"/>
-            <TextBox HorizontalAlignment="Center" Width="120"/>
+            <TextBox x:Name="UsernameInput" HorizontalAlignment="Center" Width="120" Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"/>
             <TextBlock Text="Password" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold"/>
-            <PasswordBox HorizontalAlignment="Center" Width="120"/>
+            <TextBox x:Name="passwordInput" HorizontalAlignment="Center" Width="120" Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}"/>
 
             <StackPanel Orientation="Vertical">
                 <Grid Width="170" HorizontalAlignment="Center" Margin="5">
