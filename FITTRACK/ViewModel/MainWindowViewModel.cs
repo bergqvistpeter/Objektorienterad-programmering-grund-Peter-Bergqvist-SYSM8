@@ -9,5 +9,6 @@ namespace FITTRACK.ViewModel
 {
     class MainWindowViewModel : ViewModelBase
     {
+    
     }
 }

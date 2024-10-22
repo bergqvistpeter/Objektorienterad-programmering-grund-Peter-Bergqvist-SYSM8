@@ -16,13 +16,13 @@ namespace FITTRACK.Model
         private User user;
 
         //Konstruktor
-        public CardioWorkout(DateTime date, string type, TimeSpan duration, double CaloriesBurned, string notes) : base(date, type, duration, CaloriesBurned, notes)
+        public CardioWorkout(DateTime date, string type, TimeSpan duration, double CaloriesBurned, string notes, User user) : base(date, type, duration, CaloriesBurned, notes)
         {
-            
+            this.user = user;
         }
 
-
-        public override double CalculateCaloriesBurnd()
+        //Metod 
+        public override double CalculateCaloriesBurnd() // Metod som räknar ut Kalorier
         { 
             CaloriesBurned = (Duration.TotalMinutes * StaticWorkoutValue * METRunning * user.GetUserWeight())/ 200;
             return CaloriesBurned;

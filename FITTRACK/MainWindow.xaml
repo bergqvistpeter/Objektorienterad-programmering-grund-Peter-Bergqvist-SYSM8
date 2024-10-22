@@ -6,7 +6,33 @@
         xmlns:local="clr-namespace:FITTRACK"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <Grid Background="LightGray">
+        <StackPanel>
+            <Label Content="FitTrack" HorizontalAlignment="Center" FontSize="100" FontWeight="Bold" Foreground="Crimson" />
+            <TextBlock Text="Username" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold"/>
+            <TextBox HorizontalAlignment="Center" Width="120"/>
+            <TextBlock Text="Password" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold"/>
+            <PasswordBox HorizontalAlignment="Center" Width="120"/>
 
+            <StackPanel Orientation="Vertical">
+                <Grid Width="170" HorizontalAlignment="Center" Margin="5">
+                    <Grid.ColumnDefinitions >
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                       
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+
+                    </Grid.RowDefinitions>
+                    <Button Grid.Column="0" Content="Logga in" Background="Crimson" FontWeight="Bold"/>
+                    <Button Grid.Column="1" Content="Registrera" Background="Crimson" FontWeight="Bold"/>
+                    <Button Grid.Column="0" Grid.Row="1" Content="Glömt lösen?" Background="Crimson" FontWeight="Bold"/>
+                    <Button Grid.Column="1" Grid.Row="1" Content="Stäng" Background="Crimson" FontWeight="Bold"/>
+                </Grid>
+                
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </Window>
