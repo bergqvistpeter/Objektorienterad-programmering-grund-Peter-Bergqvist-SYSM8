@@ -1,16 +1,25 @@
 ﻿using FITTRACK.MVVM;
+using FITTRACK.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reflection.Metadata;
+using System.Runtime.CompilerServices;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace FITTRACK.ViewModel
 {
     public class RegisterWindowViewModel : ViewModelBase
     {
-		private ObservableCollection<string> countries;
+        //Commands
+        public RelayCommand CancelWindowCommand => new RelayCommand(execute => CancelWindow()); //COmmand för att avbryta att stänga fönstret.
+        
+        //Egenskaper
+		private ObservableCollection<string> countries; 
 
 		public ObservableCollection<string> Countries
 		{
@@ -22,10 +31,23 @@ namespace FITTRACK.ViewModel
 			}
 		}
 
-		public RegisterWindowViewModel() 
+        private ObservableCollection<string> securityQuestion;
+
+        public ObservableCollection<string> SecurityQuestion
+        {
+            get { return securityQuestion; }
+            set 
+            { 
+                securityQuestion = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+        public RegisterWindowViewModel() 
 		
 		{
-			Countries = new ObservableCollection<string>()
+			Countries = new ObservableCollection<string>() //Lista med Länder
 			{
             "Afghanistan", "Albania", "Algeria", "Andorra",
             "Angola", "Antigua & Deps", "Argentina", "Armenia",
@@ -58,9 +80,38 @@ namespace FITTRACK.ViewModel
             "United Kingdom", "United States", "Uruguay", "Uzbekistan", "Vanuatu",
             "Vatican City", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe"
             };
-		
-		
-		}
 
-	}
+            SecurityQuestion = new ObservableCollection<string>() //Lista med Säkerhetsfrågor
+            {
+                "Vad heter/hette ditt första husdjur?",
+                "Vilket märke hade din första bil?", 
+                "Vem är din favorit författare?"
+            
+            };
+		
+        
+        }
+        private void CancelWindow()
+        {
+            MessageBoxResult result = MessageBox.Show("Är du säker på att du vill avrbyta?", "Varning", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (result == MessageBoxResult.Yes)
+            {
+                MainWindow mainWindow = new MainWindow(); //Skapar den nya SplashScreenen
+                mainWindow.Show();
+
+                foreach (Window window in Application.Current.Windows)  //går igenom öppna fönster
+                {
+                    if (window is RegisterWindow) // om ett fönster som är öppet heter RegisterWindow. Stäng det
+                    {
+                        window.Close();
+                        break;
+                    }
+                }
+
+            }
+            
+
+        }
+
+    }
 }
