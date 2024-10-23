@@ -1,17 +1,23 @@
 ﻿using FITTRACK.Model;
 using FITTRACK.MVVM;
+using FITTRACK.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Input;
 
 namespace FITTRACK.ViewModel
 {
     class MainWindowViewModel : ViewModelBase
-    {
-        public RelayCommand SignIn => new RelayCommand(execute => SignIn(Password,Username));
+    {   //Commands
+        public RelayCommand SignInCommand => new RelayCommand(execute => SignIn());
+        public RelayCommand OpenRegisterWindowCommand => new RelayCommand(execute => OpenRegisterWindow()); //Command som öppnar nytt fönster
+        public RelayCommand CloseProgramWindowCommand => new RelayCommand(execute => CloseProgramWindow()); //Command som stänger programmet
 
+        
         public string username;
         public string Username {
             get
@@ -47,6 +53,17 @@ namespace FITTRACK.ViewModel
             
         }
 
-        
+        private void OpenRegisterWindow() // Metod som öppnar Register fönster och stänger det gamla
+        {
+            RegisterWindow registerWindow = new RegisterWindow(); //Skapar det nya Register fönstret
+            registerWindow.Show(); //Öppnar det nya Register fönstret
+            Application.Current.MainWindow.Close(); //Stänger huvudfönstret
+            
+        }
+
+        private void CloseProgramWindow() 
+        {
+            Application.Current.Shutdown(); //Stänger programmet
+        }
     }
 }

@@ -7,8 +7,10 @@
         mc:Ignorable="d"
         Title="RegisterWindow" Height="450" Width="800">
     <Grid Background="LightGray">
+        <ScrollViewer>
         <StackPanel HorizontalAlignment="Center">
-            <Label Content="FitTrack Registrering" Foreground="Crimson" FontSize="50" FontWeight="Bold"/>
+            
+            <Label Content="FitTrack Registrering" Foreground="Crimson" FontSize="40" FontWeight="Bold" HorizontalAlignment="Center"/>
             <Label Content="Username" HorizontalAlignment="Center" FontWeight="Bold" FontSize="16"/>
             <TextBox Width="120"/>
             <Label Content="Password" HorizontalAlignment="Center" FontWeight="Bold" FontSize="16"/>
@@ -19,6 +21,11 @@
             <ComboBox Width="120"/>
             <Label Content="Vikt" FontWeight="Bold" FontSize="16" HorizontalAlignment="Center"/>
             <Slider Width="300"/>
+            <TextBlock Width="60" Height="16" Background="White"/>
+            <Label Content="Säkerhetsfråga" FontWeight="Bold" FontSize="16" HorizontalAlignment="Center"/>
+            <ComboBox Margin="5"/>
+            <Label Content="Svar Säkerhetsfråga" FontWeight="Bold" FontSize="16" HorizontalAlignment="Center"/>
+            <TextBox Width="120"/>
             <Grid Width="300" Height="30" Margin="10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
@@ -30,5 +37,6 @@
             
 
         </StackPanel>
-    </Grid>
+        </ScrollViewer>
+        </Grid>
 </Window>

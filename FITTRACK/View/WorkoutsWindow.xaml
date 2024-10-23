@@ -14,7 +14,7 @@
                 <Button Height="30" Width="80" Content="Admin" FontWeight="Bold" FontSize="14"/>
                 <Button Height="30" Width="80" Content="Info" FontWeight="Bold" FontSize="14"/>
             </StackPanel>
-            <Grid Width="800" Height="30">
+            <Grid Width="800" Height="30" Background="Lightgray">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
@@ -31,32 +31,28 @@
             </Grid>
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="7*"/>
-                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition/>
+
                 </Grid.ColumnDefinitions>
                 
                 <DataGrid CanUserAddRows="False" CanUserDeleteRows="False" AutoGenerateColumns="False" ItemsSource="{Binding Workouts}" SelectedItem="{Binding SelectedWorkout}" FontSize="16" FontWeight="Bold" Height="300">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Datum" Binding="{Binding Date}" Width="4*" />
-                        <DataGridTextColumn Header="Typ" Binding="{Binding SerieNbr}" Width="4*" />
+                        <DataGridTextColumn Header="Typ" Binding="{Binding Type}" Width="4*" />
 
                     </DataGrid.Columns>
 
                 </DataGrid>
-                <StackPanel Grid.Column="1">
-                    <Label Content="Datum" Height="30" FontWeight="Bold" FontSize="16"/>
-                    <TextBox Text="{Binding Workout.Date, UpdateSourceTrigger=PropertyChanged}" Height="30"/>
-                    <Label Content="Typ" Height="30" FontWeight="Bold" FontSize="16"/>
-                    <TextBox Text="{Binding Workout.Type, UpdateSourceTrigger=PropertyChanged}" Height="30"/>
-                </StackPanel>
+                
             </Grid>
             <Grid Width="200" Height="30">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="7*"/>
-                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="4*"/>
+                    <ColumnDefinition Width="8*"/>
                 </Grid.ColumnDefinitions>
-                <ComboBox/>
-                <Button Grid.Column="1" Content="Sortera" HorizontalAlignment="Center" FontWeight="Bold" FontSize="16" Background="Crimson"/>
+                <Label Content="Sortera"  FontSize="15" FontWeight="Bold"/>
+                <ComboBox Grid.Column="1"/>
+                
             </Grid>
             
         </StackPanel>

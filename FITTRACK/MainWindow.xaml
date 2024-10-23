@@ -28,9 +28,9 @@
 
                     </Grid.RowDefinitions>
                     <Button Grid.Column="0" Content="Logga in" Background="Crimson" FontWeight="Bold"/>
-                    <Button Grid.Column="1" Content="Registrera" Background="Crimson" FontWeight="Bold"/>
+                    <Button Grid.Column="1" Content="Registrera" Background="Crimson" FontWeight="Bold" Command="{Binding OpenRegisterWindowCommand}"/>
                     <Button Grid.Column="0" Grid.Row="1" Content="Glömt lösen?" Background="Crimson" FontWeight="Bold"/>
-                    <Button Grid.Column="1" Grid.Row="1" Content="Stäng" Background="Crimson" FontWeight="Bold"/>
+                    <Button Grid.Column="1" Grid.Row="1" Content="Stäng" Background="Crimson" FontWeight="Bold" Command="{Binding CloseProgramWindowCommand}"/>
                 </Grid>
                 
             </StackPanel>
