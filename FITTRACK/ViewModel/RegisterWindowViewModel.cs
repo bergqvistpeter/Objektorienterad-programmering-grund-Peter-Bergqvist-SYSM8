@@ -1,4 +1,5 @@
-﻿using FITTRACK.MVVM;
+﻿using FITTRACK.Model;
+using FITTRACK.MVVM;
 using FITTRACK.View;
 using System;
 using System.Collections.Generic;
@@ -10,12 +11,15 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace FITTRACK.ViewModel
 {
     public class RegisterWindowViewModel : ViewModelBase
     {
         //Commands
+        public RelayCommand CreateNewUserCommand => new RelayCommand(execute => CreateNewUser());
         public RelayCommand CancelWindowCommand => new RelayCommand(execute => CancelWindow()); //COmmand för att avbryta att stänga fönstret.
         
         //Egenskaper
@@ -42,6 +46,101 @@ namespace FITTRACK.ViewModel
                 OnPropertyChanged();
             }
         }
+
+        private User newUser;
+        public User NewUser
+        {
+            get { return newUser; }
+            set
+            {
+                newUser = value;
+                OnPropertyChanged();
+            }
+        }
+        private string inputUsername;
+
+        public string InputUsername
+        {
+            get { return inputUsername; }
+            set 
+            {
+                inputUsername = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string inputPassword;
+
+        public string InputPassword
+        {
+            get { return inputPassword; }
+            set
+            { 
+                inputPassword = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string inputConfirmPassword;
+
+        public string InputConfirmPassword
+        {
+            get { return inputConfirmPassword; }
+            set 
+            {
+                inputConfirmPassword = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string selectedCountry;
+
+        public string SelectedCountry
+        {
+            get { return selectedCountry; }
+            set 
+            { 
+                selectedCountry = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private double sliderValue;
+
+        public double SliderValue
+        {
+            get { return sliderValue; }
+            set
+            {
+                sliderValue = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string selectedSecurityQuestion;
+
+        public string SelectedSecurityQuestion
+        {
+            get { return selectedSecurityQuestion; }
+            set 
+            { 
+                selectedSecurityQuestion = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string securityQuestionAnswer;
+
+        public string SecurityQuestionAnswer
+        {
+            get { return securityQuestionAnswer; }
+            set 
+            { 
+                securityQuestionAnswer = value;
+                OnPropertyChanged();
+            }
+        }
+
 
 
         public RegisterWindowViewModel() 
@@ -88,8 +187,9 @@ namespace FITTRACK.ViewModel
                 "Vem är din favorit författare?"
             
             };
-		
-        
+
+           
+
         }
         private void CancelWindow() //Metod som frågar användaren om de är säkra på att de vill avbryta och om de väljer Yes, så stängs fönstret och MainWindow öppnas.
         {
@@ -112,6 +212,47 @@ namespace FITTRACK.ViewModel
             
 
         }
+        private void CreateNewUser()
+        {
+            
+            
+            foreach (User user in User.Users)
+            { 
+                    
 
+                    if (user.Username == InputUsername) //Kollar om användarnamnet
+                    {
+                        MessageBox.Show("Användarnamnet är upptaget"); //Felmeddelande om användarnamnet är upptaget
+                    }
+                    else {
+                        if (InputPassword == inputConfirmPassword) //Kontrollerar om lösenordet är samma
+                        {
+
+                        NewUser = new User($"{InputUsername}", $"{InputPassword}", $"{SelectedCountry}", $"{SelectedSecurityQuestion}", $"{SecurityQuestionAnswer}", SliderValue);
+                        User.AddUser(newUser);
+                            MessageBox.Show("Ny användare har skapats", "Välkommnen!");
+                            MainWindow mainWindow = new MainWindow(); //Skapar den nya SplashScreenen
+                            mainWindow.Show();
+
+                        foreach (Window window in Application.Current.Windows)  //går igenom öppna fönster
+                        {
+                            if (window is RegisterWindow) // om ett fönster som är öppet heter RegisterWindow. Stäng det
+                            {
+                                window.Close();
+                                break;
+                            }
+                        }
+
+                        break;
+                            
+                        } else
+                        {
+                            MessageBox.Show("Passworden matchar inte");
+                        }
+                    }
+                }
+           
+        } 
+            
     }
 }

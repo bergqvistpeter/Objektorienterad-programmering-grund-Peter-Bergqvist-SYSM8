@@ -22,7 +22,7 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" Content="Lägg till Träning" FontSize="15" FontWeight="Bold" Background="Crimson"/>
+                <Button Grid.Column="0" Content="Lägg till Träning" FontSize="15" FontWeight="Bold" Background="Crimson" Command="{Binding AddWorkoutWindowCommand}"/>
                 <Button Grid.Column="1" Content="Ta bort Träning" FontSize="15" FontWeight="Bold" Background="Crimson"/>
                 <Button Grid.Column="2" Content="Tränings Information" FontSize="15" FontWeight="Bold" Background="Crimson"/>
                 <Button Grid.Column="3" Content="Redigera Konto"  FontSize="15" FontWeight="Bold" Background="Crimson" Command="{Binding OpenUserDetailsWindowCommand}"/>

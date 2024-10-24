@@ -12,6 +12,7 @@ namespace FITTRACK.ViewModel
 {
     class WorkoutsWindowViewModel
     {   //Commands
+        public RelayCommand AddWorkoutWindowCommand => new RelayCommand(execute => AddWorkoutWindow());
         public RelayCommand InfoBoxCommand => new RelayCommand(execute => InfoBox());
         public RelayCommand OpenUserDetailsWindowCommand => new RelayCommand(execute => OpenUserDetailsWindow());
         public RelayCommand LogOutToMainCommand => new RelayCommand(execute => LogOutToMain());
@@ -61,10 +62,29 @@ namespace FITTRACK.ViewModel
 
 
         }
-        private void InfoBox() 
+        private void InfoBox() //InfoBox som öppnar ett fönster med info
         {
-            MessageBox.Show("FitTrack startades 2024.\n\n Vi erbjuder en App för att hantera dina träningar på ett enkelt och smidigt sätt.","FitTrack Info", MessageBoxButton.OK);
+            MessageBox.Show("FitTrack startades 2024.\n\nVi erbjuder en App för att hantera dina träningar på ett enkelt och smidigt sätt.","FitTrack Info", MessageBoxButton.OK);
         }
         
+        private void AddWorkoutWindow()
+        {
+            AddWorkoutWindow addWorkoutWindow = new AddWorkoutWindow(); //Skapar det nya Workout fönstret
+            addWorkoutWindow.Show(); //Öppnar det nya workoutfönstret
+                                     
+            
+                
+
+                foreach (Window window in Application.Current.Windows)  //går igenom öppna fönster
+                {
+                    if (window is WorkoutsWindow) // om ett fönster som är öppet heter WorkoutsWindow. Stäng det
+                    {
+                        window.Close();
+                        break;
+                    }
+                }
+
+            
+        }
     }
 }

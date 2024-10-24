@@ -1,4 +1,5 @@
-﻿using FITTRACK.View;
+﻿using FITTRACK.MVVM;
+using FITTRACK.View;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,11 +16,12 @@ namespace FITTRACK.Model
         public string Country { get; set; }
         public string SecurityQuestion { get; set; }
         public string SecurityAnswer { get; set; }
+        
         public double Weight { get; set; }
-
+       
         public static List<User> Users = new List<User> { new User("user", "password", "Sweden", "Vilket märke hade din första bil?", "Volvo", 100) };
 
-      
+        public string ConfirmPassword;
         
 
         //Konstruktor
@@ -30,6 +32,7 @@ namespace FITTRACK.Model
             this.SecurityAnswer = securityAnswer;
             this.Weight = weight;
         }
+       
         
         //Metod
         public override void SignIn(string username, string password)
@@ -62,7 +65,7 @@ namespace FITTRACK.Model
             return Weight;
         }
 
-        public void AddUser(User user) 
+        public static void AddUser(User user) 
         { 
             Users.Add(user);
         }
