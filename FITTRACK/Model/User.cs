@@ -1,6 +1,8 @@
 ﻿using FITTRACK.View;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,8 +15,13 @@ namespace FITTRACK.Model
         public string Country { get; set; }
         public string SecurityQuestion { get; set; }
         public string SecurityAnswer { get; set; }
-
         public double Weight { get; set; }
+
+        public static List<User> Users = new List<User> { new User("user", "password", "Sweden", "Vilket märke hade din första bil?", "Volvo", 100) };
+
+      
+        
+
         //Konstruktor
         public User(string username, string password, string country, string securityQuestion, string securityAnswer, double weight) : base(username, password)
         {
@@ -23,6 +30,7 @@ namespace FITTRACK.Model
             this.SecurityAnswer = securityAnswer;
             this.Weight = weight;
         }
+        
         //Metod
         public override void SignIn(string username, string password)
         {
@@ -31,13 +39,15 @@ namespace FITTRACK.Model
             {
                 WorkoutsWindow workoutsWindow = new WorkoutsWindow();
                 workoutsWindow.Show();
-                MessageBox.Show($"Välkommen{Username}","Välkommen!", MessageBoxButton.OK, MessageBoxImage.None);
+                Application.Current.MainWindow.Close();
+                MessageBox.Show($"Välkommen {Username}","Välkommen!", MessageBoxButton.OK, MessageBoxImage.None);
                 
+
             }
 
-            else 
+            else
             {
-               MessageBox.Show("Felaktigt Username eller Password", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+               MessageBox.Show("Felaktigt Password", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
 
@@ -50,6 +60,11 @@ namespace FITTRACK.Model
         public double GetUserWeight() 
         {
             return Weight;
+        }
+
+        public void AddUser(User user) 
+        { 
+            Users.Add(user);
         }
     }
 }

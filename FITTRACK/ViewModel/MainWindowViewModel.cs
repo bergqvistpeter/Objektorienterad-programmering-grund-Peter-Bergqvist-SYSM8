@@ -3,6 +3,7 @@ using FITTRACK.MVVM;
 using FITTRACK.View;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,11 +14,11 @@ namespace FITTRACK.ViewModel
 {
     class MainWindowViewModel : ViewModelBase
     {   //Commands
-        public RelayCommand SignInCommand => new RelayCommand(execute => SignIn());
+        public RelayCommand SignInCommand => new RelayCommand(execute => SignIn()); //Command som logga in dig
         public RelayCommand OpenRegisterWindowCommand => new RelayCommand(execute => OpenRegisterWindow()); //Command som öppnar nytt fönster
         public RelayCommand CloseProgramWindowCommand => new RelayCommand(execute => CloseProgramWindow()); //Command som stänger programmet
 
-        
+        private UserManager userManager;
         public string username;
         public string Username {
             get
@@ -48,9 +49,31 @@ namespace FITTRACK.ViewModel
             }
         }
 
-        private void SignIn()
+        public MainWindowViewModel() 
+        { 
+            userManager = new UserManager();
+        }
+     
+        public void AddUserToManager(User user)
         {
-            
+            userManager.AddUser(user);
+        }
+
+        private void SignIn() //Metod för att logga in
+        {
+            foreach (User user in User.Users) //Går igenom lista med Användare och jämför ANvändarnamn
+            {
+                if (user.Username == Username)
+                {
+                    user.SignIn(Username, Password);
+                    AddUserToManager(user);
+                    return;
+                }
+               
+            }
+            {
+                MessageBox.Show("Felaktigt Username", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void OpenRegisterWindow() // Metod som öppnar Register fönster och stänger det gamla

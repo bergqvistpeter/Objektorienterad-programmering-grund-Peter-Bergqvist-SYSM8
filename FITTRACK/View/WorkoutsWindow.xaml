@@ -10,9 +10,9 @@
         <StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Du är inloggad som"  Height="30" Width="140" FontWeight="Bold" FontSize="14"/>
-                <TextBlock Height="30" Width="80"/>
+                <TextBlock Height="30" Width="80" Text="{Binding UserManager.CurrentUser.Username}" VerticalAlignment="Center"/>
                 <Button Height="30" Width="80" Content="Admin" FontWeight="Bold" FontSize="14"/>
-                <Button Height="30" Width="80" Content="Info" FontWeight="Bold" FontSize="14"/>
+                <Button Height="30" Width="80" Content="Info" FontWeight="Bold" FontSize="14" Command="{Binding InfoBoxCommand}"/>
             </StackPanel>
             <Grid Width="800" Height="30" Background="Lightgray">
                 <Grid.ColumnDefinitions>
@@ -25,8 +25,8 @@
                 <Button Grid.Column="0" Content="Lägg till Träning" FontSize="15" FontWeight="Bold" Background="Crimson"/>
                 <Button Grid.Column="1" Content="Ta bort Träning" FontSize="15" FontWeight="Bold" Background="Crimson"/>
                 <Button Grid.Column="2" Content="Tränings Information" FontSize="15" FontWeight="Bold" Background="Crimson"/>
-                <Button Grid.Column="3" Content="Redigera Konto"  FontSize="15" FontWeight="Bold" Background="Crimson"/>
-                <Button Grid.Column="4" Content="Logga ut"  FontSize="15" FontWeight="Bold" Background="Crimson"/>
+                <Button Grid.Column="3" Content="Redigera Konto"  FontSize="15" FontWeight="Bold" Background="Crimson" Command="{Binding OpenUserDetailsWindowCommand}"/>
+                <Button Grid.Column="4" Content="Logga ut"  FontSize="15" FontWeight="Bold" Background="Crimson" Command="{Binding LogOutToMainCommand}"/>
 
             </Grid>
             <Grid Grid.Row="1">
