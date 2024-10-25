@@ -1,4 +1,5 @@
-﻿using FITTRACK.ViewModel;
+﻿using FITTRACK.Model;
+using FITTRACK.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,9 +23,9 @@ namespace FITTRACK.View
     {
         public WorkoutsWindow()
         {
-            InitializeComponent(); 
+            InitializeComponent();
             WorkoutsWindowViewModel viewModel = new WorkoutsWindowViewModel(); //Skapat ViewModel och bundit den.
-            DataContext = viewModel;
+            DataContext = viewModel ;
 
         }
     }

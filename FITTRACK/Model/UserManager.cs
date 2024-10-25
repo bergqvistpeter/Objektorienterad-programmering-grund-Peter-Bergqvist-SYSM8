@@ -10,43 +10,21 @@ namespace FITTRACK.Model
 {
     public class UserManager : ViewModelBase
     {
-        public User CurrentUser;
+        private static UserManager instance;
+        public static UserManager Instance => instance ??= new UserManager();
 
+        public User CurrentUser { get; private set; }
 
-		private ObservableCollection<User> loggedInUsers;		
-
-		public ObservableCollection<User> LoggedInUsers
-		{
-			get { return loggedInUsers; }
-			set 
-			{ 
-				loggedInUsers = value;
-				OnPropertyChanged();
-			}
-		}
-
-		public UserManager() 
-		{
-            loggedInUsers = new ObservableCollection<User>();
-        }
-
-        public void AddUser(User user)
+        private UserManager()
         {
-            if (!loggedInUsers.Contains(user))
-            {
-                loggedInUsers.Add(user);
-                OnPropertyChanged();
-                CurrentUser = user;
-            }
+            
         }
 
-        public void RemoveUser(User user)
+        public void SetCurrentUser(User user)
         {
-            if (loggedInUsers.Contains(user))
-            {
-                loggedInUsers.Remove(user);
-                OnPropertyChanged();
-            }
+            CurrentUser = user;
+            
         }
+
     }
 }

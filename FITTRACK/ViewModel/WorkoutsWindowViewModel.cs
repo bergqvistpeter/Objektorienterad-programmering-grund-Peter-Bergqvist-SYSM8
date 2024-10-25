@@ -11,18 +11,20 @@ using System.Windows;
 namespace FITTRACK.ViewModel
 {
     class WorkoutsWindowViewModel
-    {   //Commands
+    {
+        public User CurrentUser => UserManager.Instance.CurrentUser;
+        //Commands
         public RelayCommand AddWorkoutWindowCommand => new RelayCommand(execute => AddWorkoutWindow());
         public RelayCommand InfoBoxCommand => new RelayCommand(execute => InfoBox());
         public RelayCommand OpenUserDetailsWindowCommand => new RelayCommand(execute => OpenUserDetailsWindow());
         public RelayCommand LogOutToMainCommand => new RelayCommand(execute => LogOutToMain());
         //Egenskaper
-        private UserManager userManager;
+        
 
         //Konstruktor
         public WorkoutsWindowViewModel() 
         {
-            userManager = new UserManager();
+           
         }
         //Metod
         private void OpenUserDetailsWindow() // Metod som öppnar redigera konto fönster och stänger det gamla

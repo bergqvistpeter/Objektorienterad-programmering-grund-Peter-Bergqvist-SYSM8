@@ -22,8 +22,8 @@ namespace FITTRACK.Model
         public static List<User> Users = new List<User> { new User("user", "password", "Sweden", "Vilket märke hade din första bil?", "Volvo", 100) };
 
         public string ConfirmPassword;
-        
 
+        
         //Konstruktor
         public User(string username, string password, string country, string securityQuestion, string securityAnswer, double weight) : base(username, password)
         {
@@ -32,6 +32,7 @@ namespace FITTRACK.Model
             this.SecurityAnswer = securityAnswer;
             this.Weight = weight;
         }
+        
        
         
         //Metod
@@ -40,6 +41,9 @@ namespace FITTRACK.Model
             if (Password == password && Username == username)
 
             {
+                UserManager.Instance.SetCurrentUser(this); //Sätter den inloggade användaren i UserManager
+
+
                 WorkoutsWindow workoutsWindow = new WorkoutsWindow();
                 workoutsWindow.Show();
                 Application.Current.MainWindow.Close();

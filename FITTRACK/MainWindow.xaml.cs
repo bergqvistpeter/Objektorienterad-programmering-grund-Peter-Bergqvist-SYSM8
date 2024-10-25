@@ -1,4 +1,5 @@
-﻿using FITTRACK.ViewModel;
+﻿using FITTRACK.Model;
+using FITTRACK.ViewModel;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;

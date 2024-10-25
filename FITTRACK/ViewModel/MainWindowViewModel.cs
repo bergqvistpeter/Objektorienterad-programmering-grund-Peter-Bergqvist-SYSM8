@@ -18,7 +18,8 @@ namespace FITTRACK.ViewModel
         public RelayCommand OpenRegisterWindowCommand => new RelayCommand(execute => OpenRegisterWindow()); //Command som öppnar nytt fönster
         public RelayCommand CloseProgramWindowCommand => new RelayCommand(execute => CloseProgramWindow()); //Command som stänger programmet
 
-        private UserManager userManager;
+        public User CurrentUser => UserManager.Instance.CurrentUser;
+
         public string username;
         public string Username {
             get
@@ -50,14 +51,11 @@ namespace FITTRACK.ViewModel
         }
 
         public MainWindowViewModel() 
-        { 
-            userManager = new UserManager();
+        {
+           
         }
      
-        public void AddUserToManager(User user)
-        {
-            userManager.AddUser(user);
-        }
+        
 
         private void SignIn() //Metod för att logga in
         {
@@ -66,7 +64,7 @@ namespace FITTRACK.ViewModel
                 if (user.Username == Username)
                 {
                     user.SignIn(Username, Password);
-                    AddUserToManager(user);
+                   
                     return;
                 }
                
