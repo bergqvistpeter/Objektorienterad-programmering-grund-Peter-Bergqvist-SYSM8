@@ -6,7 +6,43 @@
         xmlns:local="clr-namespace:FITTRACK.View"
         mc:Ignorable="d"
         Title="AddWorkoutWindow" Height="450" Width="800">
-    <Grid>
-        
+    <Grid Background="LightGray">
+        <StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Du är inloggad som:"  Height="30" Width="140" FontWeight="Bold" FontSize="14"/>
+                <TextBlock Height="30" Width="160" Text="{Binding CurrentUser.Username}" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" FontSize="18" Foreground="Crimson"/>
+            </StackPanel>
+            <Label Content="Add Workout" HorizontalAlignment="Center" FontWeight="Bold" FontSize="30" Foreground="Crimson"/>
+            <Grid Width="400">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="100"/>
+                </Grid.RowDefinitions>
+                <Label Content="Datum:" HorizontalAlignment="Left" FontWeight="Bold" FontSize="16" Grid.Column="0" VerticalAlignment="Center"/>
+                <DatePicker Grid.Column="1" SelectedDate="{Binding InputDate}"/>
+                <Label Content="Typ:" Grid.Row="1" HorizontalAlignment="Left" FontWeight="Bold" FontSize="16" Grid.Column="0" VerticalAlignment="Center"/>
+                <ComboBox Grid.Column="1" Grid.Row="1" ItemsSource="{Binding WorkoutType}" SelectedItem="{Binding InputWorkoutType}"/>
+                <Label Content="Tid(TT:MM:SS):" Grid.Row="2" HorizontalAlignment="Left" FontWeight="Bold" FontSize="16" Grid.Column="0" VerticalAlignment="Center"/>
+                <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding InputDuration, Mode=TwoWay, StringFormat='hh\\:mm\\:ss', UpdateSourceTrigger=PropertyChanged}"/>
+                <Label Content="Anteckningar:" Grid.Row="3" HorizontalAlignment="Left" FontWeight="Bold" FontSize="16" Grid.Column="0" VerticalAlignment="Center"/>
+                <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding InputNotes, UpdateSourceTrigger=PropertyChanged}"/>
+            </Grid>
+            <Grid Width="300" Height="30" Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Content="Lägg till Pass" FontWeight="Bold" FontSize="16" Background="Crimson" />
+                <Button Content="Avbryt" Grid.Column="1" FontWeight="Bold" FontSize="16" Background="Crimson" Command="{Binding CancelWindowCommand}"/>
+            </Grid>
+
+        </StackPanel>
     </Grid>
 </Window>

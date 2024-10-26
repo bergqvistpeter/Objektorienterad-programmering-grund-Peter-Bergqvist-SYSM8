@@ -39,6 +39,7 @@
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Datum" Binding="{Binding Date}" Width="4*" />
                         <DataGridTextColumn Header="Typ" Binding="{Binding Type}" Width="4*" />
+                        <DataGridTextColumn Header="Tid" Binding="{Binding Duration}" Width="2*" />
 
                     </DataGrid.Columns>
 
