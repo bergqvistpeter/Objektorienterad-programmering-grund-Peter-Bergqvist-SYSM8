@@ -21,27 +21,27 @@ namespace FITTRACK.ViewModel
         //Commands
         public RelayCommand CreateNewUserCommand => new RelayCommand(execute => CreateNewUser());
         public RelayCommand CancelWindowCommand => new RelayCommand(execute => CancelWindow()); //COmmand för att avbryta att stänga fönstret.
-        
-        //Egenskaper
-		private ObservableCollection<string> countries; 
 
-		public ObservableCollection<string> Countries
-		{
-			get { return countries; }
-			set 
-			{ 
-				countries = value; 
-				OnPropertyChanged();
-			}
-		}
+        //Egenskaper
+        private ObservableCollection<string> countries;
+
+        public ObservableCollection<string> Countries
+        {
+            get { return countries; }
+            set
+            {
+                countries = value;
+                OnPropertyChanged();
+            }
+        }
 
         private ObservableCollection<string> securityQuestion;
 
         public ObservableCollection<string> SecurityQuestion
         {
             get { return securityQuestion; }
-            set 
-            { 
+            set
+            {
                 securityQuestion = value;
                 OnPropertyChanged();
             }
@@ -62,7 +62,7 @@ namespace FITTRACK.ViewModel
         public string InputUsername
         {
             get { return inputUsername; }
-            set 
+            set
             {
                 inputUsername = value;
                 OnPropertyChanged();
@@ -75,7 +75,7 @@ namespace FITTRACK.ViewModel
         {
             get { return inputPassword; }
             set
-            { 
+            {
                 inputPassword = value;
                 OnPropertyChanged();
             }
@@ -86,7 +86,7 @@ namespace FITTRACK.ViewModel
         public string InputConfirmPassword
         {
             get { return inputConfirmPassword; }
-            set 
+            set
             {
                 inputConfirmPassword = value;
                 OnPropertyChanged();
@@ -98,8 +98,8 @@ namespace FITTRACK.ViewModel
         public string SelectedCountry
         {
             get { return selectedCountry; }
-            set 
-            { 
+            set
+            {
                 selectedCountry = value;
                 OnPropertyChanged();
             }
@@ -122,8 +122,8 @@ namespace FITTRACK.ViewModel
         public string SelectedSecurityQuestion
         {
             get { return selectedSecurityQuestion; }
-            set 
-            { 
+            set
+            {
                 selectedSecurityQuestion = value;
                 OnPropertyChanged();
             }
@@ -134,8 +134,8 @@ namespace FITTRACK.ViewModel
         public string SecurityQuestionAnswer
         {
             get { return securityQuestionAnswer; }
-            set 
-            { 
+            set
+            {
                 securityQuestionAnswer = value;
                 OnPropertyChanged();
             }
@@ -143,10 +143,10 @@ namespace FITTRACK.ViewModel
 
 
 
-        public RegisterWindowViewModel() 
-		
-		{
-			Countries = new ObservableCollection<string>() //Lista med Länder
+        public RegisterWindowViewModel()
+
+        {
+            Countries = new ObservableCollection<string>() //Lista med Länder
 			{
             "Afghanistan", "Albania", "Algeria", "Andorra",
             "Angola", "Antigua & Deps", "Argentina", "Armenia",
@@ -183,12 +183,12 @@ namespace FITTRACK.ViewModel
             SecurityQuestion = new ObservableCollection<string>() //Lista med Säkerhetsfrågor
             {
                 "Vad heter/hette ditt första husdjur?",
-                "Vilket märke hade din första bil?", 
+                "Vilket märke hade din första bil?",
                 "Vem är din favorit författare?"
-            
+
             };
 
-           
+
 
         }
         private void CancelWindow() //Metod som frågar användaren om de är säkra på att de vill avbryta och om de väljer Yes, så stängs fönstret och MainWindow öppnas.
@@ -209,50 +209,80 @@ namespace FITTRACK.ViewModel
                 }
 
             }
-            
+
 
         }
         private void CreateNewUser()
         {
+            bool isPasswordValid = InputPassword.Length >= 8 &&  //Variabel för att kontrollera om Passwordet är gilitigt
+                   InputPassword.Any(char.IsDigit) &&
+                   InputPassword.Any(ch => "!@#$%^&*()_+-={}[]:;\"'<>,.?/\\|~`".Contains(ch)) && 
+                   InputPassword.Any(char.IsLetter);
+
+            if (string.IsNullOrWhiteSpace(InputUsername) || //Kontrollerar så att alla fält är ifyllda
+                string.IsNullOrWhiteSpace(InputPassword) ||
+                string.IsNullOrWhiteSpace(inputConfirmPassword) ||
+                string.IsNullOrWhiteSpace(SelectedCountry) ||
+                string.IsNullOrWhiteSpace(SelectedSecurityQuestion) ||
+                string.IsNullOrWhiteSpace(SecurityQuestionAnswer) ||
+                SliderValue <= 0) 
             
-            
+                {
+                    MessageBox.Show("Alla fält är inte ifylda korrekt");
+                    return;
+                }
+                if (InputUsername.Length < 3 || InputUsername.Length > 15)  //Kontrollerar att användarnamnet har rätt längd
+                {
+                    MessageBox.Show("Användarnamnet ska vara minst 3 bokstäver och max 15 bokstäver");
+                    return;
+                }
+                if (!isPasswordValid) // Kontrulerar att lösenordet innehåller specialtecken
+                {
+                    MessageBox.Show("Lösenordet måste innehålla minst 8 tecken, 1 siffra och 1 specialtecken");
+                    return;
+                }
+
             foreach (User user in User.Users)
-            { 
-                    
+            {
 
-                    if (user.Username == InputUsername) //Kollar om användarnamnet
-                    {
-                        MessageBox.Show("Användarnamnet är upptaget"); //Felmeddelande om användarnamnet är upptaget
-                    }
-                    else {
-                        if (InputPassword == inputConfirmPassword) //Kontrollerar om lösenordet är samma
-                        {
+                if (user.Username == InputUsername) //Kollar om användarnamnet inte är upptaget
+                {
+                    MessageBox.Show("Usernamet är upptaget"); //Felmeddelande om användarnamnet är upptaget
+                    return;
+                }
+                
+            }  
+            
+            if (InputPassword == inputConfirmPassword) //Kontrollerar om lösenordet är samma
+            {
 
-                        NewUser = new User($"{InputUsername}", $"{InputPassword}", $"{SelectedCountry}", $"{SelectedSecurityQuestion}", $"{SecurityQuestionAnswer}", SliderValue);
-                        User.AddUser(newUser);
+                            NewUser = new User($"{InputUsername}", $"{InputPassword}", $"{SelectedCountry}", $"{SelectedSecurityQuestion}", $"{SecurityQuestionAnswer}", SliderValue); //skapar ny användare
+                            User.AddUser(newUser); //Lägger till ny användare
                             MessageBox.Show("Ny användare har skapats", "Välkommnen!");
                             MainWindow mainWindow = new MainWindow(); //Skapar den nya SplashScreenen
                             mainWindow.Show();
 
-                        foreach (Window window in Application.Current.Windows)  //går igenom öppna fönster
-                        {
-                            if (window is RegisterWindow) // om ett fönster som är öppet heter RegisterWindow. Stäng det
+                            foreach (Window window in Application.Current.Windows)  //går igenom öppna fönster
                             {
-                                window.Close();
-                                break;
+                                if (window is RegisterWindow) // om ett fönster som är öppet heter RegisterWindow. Stäng det
+                                {
+                                    window.Close();
+                                    break;
+                                }
                             }
-                        }
 
-                        break;
                             
-                        } else
+
+                        }
+                        else
                         {
                             MessageBox.Show("Passworden matchar inte");
                         }
                     }
-                }
-           
-        } 
+                
+
             
+
+        }
     }
-}
+
