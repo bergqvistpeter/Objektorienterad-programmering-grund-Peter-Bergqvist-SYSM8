@@ -8,7 +8,7 @@ namespace FITTRACK.Model
 {
     class AdminUser : User
     {   //Konstruktor
-        public AdminUser(string username, string password, string country, string securityQuestion, string securityAnswer, double weight) : base(username, password, country, securityQuestion, securityAnswer, weight)
+        public AdminUser(string username, string password, string country, string securityQuestion, string securityAnswer, double weight, int userID) : base(username, password, country, securityQuestion, securityAnswer, weight, userID)
         {
         
         }

@@ -10,14 +10,14 @@
         <StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Du är inloggad som"  Height="30" Width="140" FontWeight="Bold" FontSize="14"/>
-                <TextBlock Height="30" Width="80" Text="{Binding UserManager.LoggedInUsers}" VerticalAlignment="Center"/>
+                <TextBlock Height="30" Width="80" Text="{Binding CurrentUser.Username}" VerticalAlignment="Center" FontWeight="Bold" Foreground="Crimson" FontSize="18"/>
             </StackPanel>
             <StackPanel HorizontalAlignment="Center">
                 <Label Content="Redigera Konto" FontSize="40" FontWeight="Bold" Foreground="Crimson" HorizontalAlignment="Center"/>
                     <Grid Height="250" Margin="10">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="3*"/>
-            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="240*"/>
+            <ColumnDefinition Width="300"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions >
             <RowDefinition Height="30"/>
@@ -31,20 +31,20 @@
    
    
 <Label Content="Username:" HorizontalAlignment="Left" FontWeight="Bold" FontSize="16" Grid.Column="0" VerticalAlignment="Center"/>
-<TextBox Width="120" Grid.Column="1"/>
+<TextBox Width="120" Grid.Column="1" Text="{Binding CurrentUser.Username, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
 <Label Content="Password:" HorizontalAlignment="Left" FontWeight="Bold" FontSize="16" Grid.Row="1"/>
-<TextBox Width="120" Grid.Row="1" Grid.Column="1"/>
+<TextBox Width="120" Grid.Row="1" Grid.Column="1" Text="{Binding CurrentUser.Password, UpdateSourceTrigger=PropertyChanged , Mode=TwoWay}"/>
 <Label Content="Confirm Password:" HorizontalAlignment="Left" FontWeight="Bold" FontSize="16" Grid.Row="2" Grid.Column="0"/>
-<TextBox Width="120" Grid.Row="2" Grid.Column="1"/>
+<TextBox Width="120" Grid.Row="2" Grid.Column="1" Text="{Binding InputConfirmPassword}"/>
 <Label Content="Välj Land:" FontWeight="Bold" FontSize="16" HorizontalAlignment="Left" Grid.Row="3" Grid.Column="0"/>
-<ComboBox Width="120" Grid.Row="3" Grid.Column="1"/>
+<ComboBox Width="120" Grid.Row="3" Grid.Column="1" ItemsSource="{Binding Countries}" SelectedItem="{Binding CurrentUser.Country, Mode=TwoWay}"/>
 <Label Content="Vikt:" FontWeight="Bold" FontSize="16" HorizontalAlignment="Left" Grid.Row="4" Grid.Column="0"/>
-<Slider Width="300" Grid.Row="4" Grid.Column="1"/>
-<TextBox Width="60" Height="16" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center"/>
+<Slider Width="300" Grid.Row="4" Grid.Column="1" Value="{Binding CurrentUser.Weight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Minimum="40" Maximum="200" TickFrequency="1" IsSnapToTickEnabled="True"/>
+<TextBox Width="60" Height="16" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center"  Text="{Binding CurrentUser.Weight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 <Label Content="Säkerhetsfråga:" FontWeight="Bold" FontSize="16" HorizontalAlignment="Center" Grid.Row="5" Grid.Column="0" VerticalAlignment="Top"/>
-<ComboBox Margin="5" Grid.Row="5" Grid.Column="0" VerticalAlignment="Bottom"/>
+<ComboBox Width="220" Margin="5" Grid.Row="5" Grid.Column="0" VerticalAlignment="Bottom" ItemsSource="{Binding SecurityQuestion}" SelectedItem="{Binding CurrentUser.SecurityQuestion, Mode=TwoWay}"/>
 <Label Content="Svar Säkerhetsfråga:" FontWeight="Bold" FontSize="16" HorizontalAlignment="Center" Grid.Row="5" Grid.Column="1"/>
-<TextBox Width="120" Height="24" Grid.Row="5" Grid.Column="1" VerticalAlignment="Top" Margin="90,34,90,0"/>
+<TextBox Width="120" Height="24" Grid.Row="5" Grid.Column="1" VerticalAlignment="Top" Margin="90,34,90,0" Text="{Binding CurrentUser.SecurityAnswer, Mode=TwoWay}"/>
 
     </Grid>
                 <Grid Width="300" Height="30" Margin="10">
@@ -52,8 +52,8 @@
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <Button Content="Redigera" FontWeight="Bold" FontSize="16" Background="Crimson" />
-                    <Button Content="Cancel" Grid.Column="1" FontWeight="Bold" FontSize="16" Background="Crimson" />
+                    <Button Content="Spara" FontWeight="Bold" FontSize="16" Background="Crimson" Command="{Binding UpdateUserCommand}" />
+                    <Button Content="Cancel" Grid.Column="1" FontWeight="Bold" FontSize="16" Background="Crimson" Command="{Binding CancelWindowCommand}" />
                 </Grid>
             </StackPanel>
         </StackPanel>

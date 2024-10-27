@@ -18,19 +18,21 @@ namespace FITTRACK.Model
         public string SecurityAnswer { get; set; }
         
         public double Weight { get; set; }
+        public int UserID { get; set; }
        
-        public static List<User> Users = new List<User> { new User("user", "password", "Sweden", "Vilket märke hade din första bil?", "Volvo", 100) };
+       
 
         public string ConfirmPassword;
 
         
         //Konstruktor
-        public User(string username, string password, string country, string securityQuestion, string securityAnswer, double weight) : base(username, password)
+        public User(string username, string password, string country, string securityQuestion, string securityAnswer, double weight, int userID) : base(username, password)
         {
             this.Country = country;
             this.SecurityQuestion = securityQuestion;
             this.SecurityAnswer = securityAnswer;
             this.Weight = weight;
+            this.UserID = userID;
         }
         
        
@@ -71,7 +73,7 @@ namespace FITTRACK.Model
 
         public static void AddUser(User user) 
         { 
-            Users.Add(user);
+            UserManager.Users.Add(user);
         }
     }
 }

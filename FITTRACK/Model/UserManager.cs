@@ -13,6 +13,8 @@ namespace FITTRACK.Model
         private static UserManager instance;
         public static UserManager Instance => instance ??= new UserManager();
 
+        public static List<User> Users = new List<User> { new User("user", "password", "Sweden", "Vilket märke hade din första bil?", "Volvo", 100, 1) };
+
         public User CurrentUser { get; private set; }
 
         private UserManager()

@@ -59,7 +59,7 @@ namespace FITTRACK.ViewModel
 
         private void SignIn() //Metod för att logga in
         {
-            foreach (User user in User.Users) //Går igenom lista med Användare och jämför ANvändarnamn
+            foreach (User user in UserManager.Users) //Går igenom lista med Användare och jämför ANvändarnamn
             {
                 if (user.Username == Username)
                 {

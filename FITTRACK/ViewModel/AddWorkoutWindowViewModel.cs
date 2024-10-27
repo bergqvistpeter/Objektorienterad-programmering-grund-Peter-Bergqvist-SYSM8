@@ -86,7 +86,7 @@ namespace FITTRACK.ViewModel
         {
             WorkoutType = new ObservableCollection<string>()
             {
-                "Strength Workout", "Cardio Workout"
+                "Strength", "Cardio"
             };
         }
         private void CancelWindow() //Metod som frågar användaren om de är säkra på att de vill avbryta och om de väljer Yes, så stängs fönstret och MainWindow öppnas.

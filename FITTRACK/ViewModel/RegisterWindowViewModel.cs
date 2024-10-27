@@ -242,7 +242,7 @@ namespace FITTRACK.ViewModel
                     return;
                 }
 
-            foreach (User user in User.Users)
+            foreach (User user in UserManager.Users)
             {
 
                 if (user.Username == InputUsername) //Kollar om användarnamnet inte är upptaget
@@ -256,7 +256,7 @@ namespace FITTRACK.ViewModel
             if (InputPassword == inputConfirmPassword) //Kontrollerar om lösenordet är samma
             {
 
-                            NewUser = new User($"{InputUsername}", $"{InputPassword}", $"{SelectedCountry}", $"{SelectedSecurityQuestion}", $"{SecurityQuestionAnswer}", SliderValue); //skapar ny användare
+                            NewUser = new User($"{InputUsername}", $"{InputPassword}", $"{SelectedCountry}", $"{SelectedSecurityQuestion}", $"{SecurityQuestionAnswer}", SliderValue, UserManager.Users.Count + 1); //skapar ny användare
                             User.AddUser(newUser); //Lägger till ny användare
                             MessageBox.Show("Ny användare har skapats", "Välkommnen!");
                             MainWindow mainWindow = new MainWindow(); //Skapar den nya SplashScreenen
