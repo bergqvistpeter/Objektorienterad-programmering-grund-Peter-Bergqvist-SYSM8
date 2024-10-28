@@ -185,8 +185,6 @@ namespace FITTRACK.ViewModel
         public void UpdateCurrentUser() 
         { //Då TwoWay Mode används ska det updateras automatiskt
             MessageBox.Show("Användaren har uppdaterats", "Update!");
-            WorkoutsWindow workoutWindow = new WorkoutsWindow(); //Skapar den nya SplashScreenen
-            workoutWindow.Show();
 
             foreach (Window window in Application.Current.Windows)  //går igenom öppna fönster
             {

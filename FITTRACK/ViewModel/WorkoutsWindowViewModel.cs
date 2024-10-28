@@ -88,14 +88,7 @@ namespace FITTRACK.ViewModel
             UserDetailsWindow userDetailsWindow = new UserDetailsWindow(); //Skapar det nya userdetails fönstret
             userDetailsWindow.Show(); //Öppnar det nya userdetails fönstret
             
-            foreach (Window window in Application.Current.Windows)  //går igenom öppna fönster
-            {
-                if (window is WorkoutsWindow) // om ett fönster som är öppet heter WorkoutsWindow. Stäng det
-                {
-                    window.Close();
-                    break;
-                }
-            }
+           
         }
         private void LogOutToMain() 
         
@@ -129,20 +122,7 @@ namespace FITTRACK.ViewModel
         {
             AddWorkoutWindow addWorkoutWindow = new AddWorkoutWindow(); //Skapar det nya Workout fönstret
             addWorkoutWindow.Show(); //Öppnar det nya workoutfönstret
-                                     
-            
-                
-
-                foreach (Window window in Application.Current.Windows)  //går igenom öppna fönster
-                {
-                    if (window is WorkoutsWindow) // om ett fönster som är öppet heter WorkoutsWindow. Stäng det
-                    {
-                        window.Close();
-                        break;
-                    }
-                }
-
-            
+                                                 
         }
         public void RemoveWorkout()
         {

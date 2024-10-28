@@ -39,7 +39,7 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button Content="Lägg till Pass" FontWeight="Bold" FontSize="16" Background="Crimson" />
+                <Button Content="Lägg till Pass" FontWeight="Bold" FontSize="16" Background="Crimson" Command="{Binding SaveWorkoutCommand}" />
                 <Button Content="Avbryt" Grid.Column="1" FontWeight="Bold" FontSize="16" Background="Crimson" Command="{Binding CancelWindowCommand}"/>
             </Grid>
 
