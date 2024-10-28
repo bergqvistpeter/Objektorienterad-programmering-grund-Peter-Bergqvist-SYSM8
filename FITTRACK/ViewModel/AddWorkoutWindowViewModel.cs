@@ -18,7 +18,7 @@ namespace FITTRACK.ViewModel
         public RelayCommand CancelWindowCommand => new RelayCommand(execute => CancelWindow()); //Command för att avbryta att stänga fönstret.
 
 
-        //ObservableCollection
+       
         private ObservableCollection<string> workoutType;
 
         public ObservableCollection<string> WorkoutType
@@ -78,7 +78,7 @@ namespace FITTRACK.ViewModel
             }
         }
 
-
+        
 
 
         //Konstruktor
@@ -88,6 +88,10 @@ namespace FITTRACK.ViewModel
             {
                 "Strength", "Cardio"
             };
+            
+            inputDate = DateTime.Now; // Sätter dagens datum som default till träningspasset som ska läggas till
+
+            
         }
         private void CancelWindow() //Metod som frågar användaren om de är säkra på att de vill avbryta och om de väljer Yes, så stängs fönstret och MainWindow öppnas.
         {

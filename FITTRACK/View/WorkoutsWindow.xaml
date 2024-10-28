@@ -35,7 +35,7 @@
 
                 </Grid.ColumnDefinitions>
                 
-                <DataGrid CanUserAddRows="False" CanUserDeleteRows="False" AutoGenerateColumns="False" ItemsSource="{Binding Workouts}" SelectedItem="{Binding SelectedWorkout}" FontSize="16" FontWeight="Bold" Height="300">
+                <DataGrid CanUserAddRows="False" CanUserDeleteRows="False" AutoGenerateColumns="False" ItemsSource="{Binding CurrentUser.Workouts}" SelectedItem="{Binding SelectedWorkout}" FontSize="16" FontWeight="Bold" Height="300">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Datum" Binding="{Binding Date}" Width="4*" />
                         <DataGridTextColumn Header="Typ" Binding="{Binding Type}" Width="4*" />

@@ -11,18 +11,18 @@ namespace FITTRACK.Model
 
         private double METStrength = 5;
         private double StaticWorkoutValue = 3.5;
-        private User user;
+        private int Weight = 70;
 
         //Konstruktor
-        public StrengthWorkout(DateTime date, string type, TimeSpan duration, double CaloriesBurned, string notes, User user) : base(date, type, duration, CaloriesBurned, notes)
-        {
-            this.user = user;
-        }
+        //public StrengthWorkout(DateTime date, string type, TimeSpan duration, double CaloriesBurned, string notes) : base(date, type, duration, CaloriesBurned, notes)
+        //{
+            
+        //}
 
         //Metod
-        public override double CalculateCaloriesBurnd() //Metod som räknar ut kcal som man bränner
+        public override double CalculateCaloriesBurnd(double weight) //Metod som räknar ut kcal som man bränner
         {
-            CaloriesBurned = (Duration.TotalMinutes * StaticWorkoutValue * METStrength * user.GetUserWeight()) / 200;
+            CaloriesBurned = (Duration.TotalMinutes * StaticWorkoutValue * METStrength * weight) / 200;
             return CaloriesBurned;
         }
     }

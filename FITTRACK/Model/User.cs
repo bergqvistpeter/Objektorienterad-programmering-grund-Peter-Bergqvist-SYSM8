@@ -2,6 +2,7 @@
 using FITTRACK.View;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Configuration;
 using System.Linq;
@@ -20,9 +21,9 @@ namespace FITTRACK.Model
         public double Weight { get; set; }
         public int UserID { get; set; }
        
-       
+       public ObservableCollection<Workout> Workouts { get; set; }
 
-        public string ConfirmPassword;
+       public string ConfirmPassword;
 
         
         //Konstruktor
@@ -33,6 +34,8 @@ namespace FITTRACK.Model
             this.SecurityAnswer = securityAnswer;
             this.Weight = weight;
             this.UserID = userID;
+        
+            Workouts = new ObservableCollection<Workout>();
         }
         
        
@@ -66,11 +69,7 @@ namespace FITTRACK.Model
             
         }
 
-        public double GetUserWeight() 
-        {
-            return Weight;
-        }
-
+        
         public static void AddUser(User user) 
         { 
             UserManager.Users.Add(user);
