@@ -15,6 +15,7 @@ namespace FITTRACK.ViewModel
     {
         public User CurrentUser => UserManager.Instance.CurrentUser;
         //Commands
+        RelayCommand RemoveWorkoutCommand => new RelayCommand(execute => RemoveWorkout(), canExecute => selectedWorkout != null);
         public RelayCommand AddWorkoutWindowCommand => new RelayCommand(execute => AddWorkoutWindow());
         public RelayCommand InfoBoxCommand => new RelayCommand(execute => InfoBox());
         public RelayCommand OpenUserDetailsWindowCommand => new RelayCommand(execute => OpenUserDetailsWindow());
@@ -35,15 +36,16 @@ namespace FITTRACK.ViewModel
 
 
         //Egenskaper
-        private ObservableCollection<Workout> selectedWorkout;
+        private Workout selectedWorkout;
 
-        public ObservableCollection<Workout> SelectedWorkout
+        public Workout SelectedWorkout
         {
             get { return selectedWorkout; }
             set 
             { 
                 selectedWorkout = value;
                 OnPropertyChanged();
+                
             }
         }
 
@@ -51,17 +53,35 @@ namespace FITTRACK.ViewModel
         //Konstruktor
         public WorkoutsWindowViewModel() 
         {
-            Workouts = new ObservableCollection<Workout>();
 
-            CurrentUser.Workouts.Add(workout1);
-            CurrentUser.Workouts.Add(workout2);
+
+            CurrentUser.Workouts = new ObservableCollection<Workout>() { // läger till två träningar till user
+
+            new CardioWorkout
+            {
+                Date = DateTime.Now,
+                Type = "Cardio",
+                Duration = new TimeSpan(0, 30, 0),
+                CaloriesBurned = 300,
+                Notes = "Löpbandet"
+            },
+
+            new StrengthWorkout
+            {
+                Date = DateTime.Now,
+                Type = "Strength",
+                Duration = new TimeSpan(1, 0, 0),
+                CaloriesBurned = 300,
+                Notes = "Överkropp"
+            }
+        };
         }
+
+
+
+
         //Metod
-
-        public void AddWorkout(Workout workout) 
-        { 
-            Workouts.Add(workout);
-        }
+        
         private void OpenUserDetailsWindow() // Metod som öppnar redigera konto fönster och stänger det gamla
         {
             UserDetailsWindow userDetailsWindow = new UserDetailsWindow(); //Skapar det nya userdetails fönstret
@@ -123,23 +143,19 @@ namespace FITTRACK.ViewModel
 
             
         }
-        Workout workout1 = new StrengthWorkout
+        private void RemoveWorkout()
         {
-            Date = DateTime.Now,
-            Type = "Cardio",
-            Duration = new TimeSpan(0, 30, 0),
-            CaloriesBurned = 300,
-            Notes = "Löpbandet"
-        };
+            
+                MessageBoxResult result = MessageBox.Show("Är du säker på att du vill ta bort det valda passet?", "Ta bort", MessageBoxButton.YesNo, MessageBoxImage.Warning); //Fråga om du är säker på att du vill ta bort ditt pass
+                if (result == MessageBoxResult.Yes)
 
-        Workout workout2 = new CardioWorkout
-        {
-            Date = DateTime.Now,
-            Type = "Strength",
-            Duration = new TimeSpan(1, 0, 0),
-            CaloriesBurned = 300,
-            Notes = "Överkropp"
-        };
-        
+                {
+                    Workouts.Remove(SelectedWorkout); // tar bort workouten
+                }
+
+               
+            
+        }
+
     }
 }

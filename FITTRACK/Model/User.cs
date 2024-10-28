@@ -14,6 +14,7 @@ namespace FITTRACK.Model
 {
     public class User : Person
     {   //Egenskaper
+        public User CurrentUser => UserManager.Instance.CurrentUser;
         public string Country { get; set; }
         public string SecurityQuestion { get; set; }
         public string SecurityAnswer { get; set; }
@@ -21,7 +22,9 @@ namespace FITTRACK.Model
         public double Weight { get; set; }
         public int UserID { get; set; }
        
-       public ObservableCollection<Workout> Workouts { get; set; }
+       public ObservableCollection<Workout> Workouts { get; set; } 
+        
+        
 
        public string ConfirmPassword;
 
@@ -34,12 +37,13 @@ namespace FITTRACK.Model
             this.SecurityAnswer = securityAnswer;
             this.Weight = weight;
             this.UserID = userID;
-        
-            Workouts = new ObservableCollection<Workout>();
+
+            
         }
+
+
         
-       
-        
+
         //Metod
         public override void SignIn(string username, string password)
         {

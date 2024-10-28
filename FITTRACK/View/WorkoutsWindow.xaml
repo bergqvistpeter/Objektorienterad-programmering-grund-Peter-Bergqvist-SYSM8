@@ -16,17 +16,18 @@
             </StackPanel>
             <Grid Width="800" Height="30" Background="Lightgray">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition Width="80*"/>
+                    <ColumnDefinition Width="80*"/>
+                    <ColumnDefinition Width="80*"/>
+                    <ColumnDefinition Width="71*"/>
+                    <ColumnDefinition Width="9*"/>
+                    <ColumnDefinition Width="80*"/>
                 </Grid.ColumnDefinitions>
                 <Button Grid.Column="0" Content="Lägg till Träning" FontSize="15" FontWeight="Bold" Background="Crimson" Command="{Binding AddWorkoutWindowCommand}"/>
-                <Button Grid.Column="1" Content="Ta bort Träning" FontSize="15" FontWeight="Bold" Background="Crimson"/>
+                <Button Grid.Column="1" Content="Ta bort Träning" FontSize="15" FontWeight="Bold" Background="Crimson" Command="{Binding RemoveWorkoutCommand}"/>
                 <Button Grid.Column="2" Content="Träningsinformation" FontSize="15" FontWeight="Bold" Background="Crimson"/>
-                <Button Grid.Column="3" Content="Redigera Konto"  FontSize="15" FontWeight="Bold" Background="Crimson" Command="{Binding OpenUserDetailsWindowCommand}"/>
-                <Button Grid.Column="4" Content="Logga ut"  FontSize="15" FontWeight="Bold" Background="Crimson" Command="{Binding LogOutToMainCommand}"/>
+                <Button Grid.Column="3" Content="Redigera Konto"  FontSize="15" FontWeight="Bold" Background="Crimson" Command="{Binding OpenUserDetailsWindowCommand}" Grid.ColumnSpan="2"/>
+                <Button Grid.Column="5" Content="Logga ut"  FontSize="15" FontWeight="Bold" Background="Crimson" Command="{Binding LogOutToMainCommand}"/>
 
             </Grid>
             <Grid Grid.Row="1">
@@ -34,8 +35,8 @@
                     <ColumnDefinition/>
 
                 </Grid.ColumnDefinitions>
-                
-                <DataGrid CanUserAddRows="False" CanUserDeleteRows="False" AutoGenerateColumns="False" ItemsSource="{Binding CurrentUser.Workouts}" SelectedItem="{Binding SelectedWorkout}" FontSize="16" FontWeight="Bold" Height="300">
+
+                <DataGrid CanUserAddRows="False" CanUserDeleteRows="False" AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding CurrentUser.Workouts}" SelectedItem="{Binding SelectedWorkout, Mode=TwoWay}" FontSize="16" FontWeight="Bold" Height="300">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Datum" Binding="{Binding Date}" Width="4*" />
                         <DataGridTextColumn Header="Typ" Binding="{Binding Type}" Width="4*" />
@@ -44,7 +45,7 @@
                     </DataGrid.Columns>
 
                 </DataGrid>
-                
+
             </Grid>
             <Grid Width="200" Height="30">
                 <Grid.ColumnDefinitions>
@@ -53,9 +54,9 @@
                 </Grid.ColumnDefinitions>
                 <Label Content="Sortera"  FontSize="15" FontWeight="Bold"/>
                 <ComboBox Grid.Column="1"/>
-                
+
             </Grid>
-            
+
         </StackPanel>
     </Grid>
 </Window>
