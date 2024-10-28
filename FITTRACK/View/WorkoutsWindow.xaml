@@ -19,15 +19,14 @@
                     <ColumnDefinition Width="80*"/>
                     <ColumnDefinition Width="80*"/>
                     <ColumnDefinition Width="80*"/>
-                    <ColumnDefinition Width="71*"/>
-                    <ColumnDefinition Width="9*"/>
+                    <ColumnDefinition Width="80*"/>
                     <ColumnDefinition Width="80*"/>
                 </Grid.ColumnDefinitions>
                 <Button Grid.Column="0" Content="Lägg till Träning" FontSize="15" FontWeight="Bold" Background="Crimson" Command="{Binding AddWorkoutWindowCommand}"/>
                 <Button Grid.Column="1" Content="Ta bort Träning" FontSize="15" FontWeight="Bold" Background="Crimson" Command="{Binding RemoveWorkoutCommand}"/>
                 <Button Grid.Column="2" Content="Träningsinformation" FontSize="15" FontWeight="Bold" Background="Crimson"/>
-                <Button Grid.Column="3" Content="Redigera Konto"  FontSize="15" FontWeight="Bold" Background="Crimson" Command="{Binding OpenUserDetailsWindowCommand}" Grid.ColumnSpan="2"/>
-                <Button Grid.Column="5" Content="Logga ut"  FontSize="15" FontWeight="Bold" Background="Crimson" Command="{Binding LogOutToMainCommand}"/>
+                <Button Grid.Column="3" Content="Redigera Konto"  FontSize="15" FontWeight="Bold" Background="Crimson" Command="{Binding OpenUserDetailsWindowCommand}" />
+                <Button Grid.Column="4" Content="Logga ut"  FontSize="15" FontWeight="Bold" Background="Crimson" Command="{Binding LogOutToMainCommand}"/>
 
             </Grid>
             <Grid Grid.Row="1">

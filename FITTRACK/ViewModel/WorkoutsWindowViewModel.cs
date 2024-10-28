@@ -15,7 +15,7 @@ namespace FITTRACK.ViewModel
     {
         public User CurrentUser => UserManager.Instance.CurrentUser;
         //Commands
-        RelayCommand RemoveWorkoutCommand => new RelayCommand(execute => RemoveWorkout(), canExecute => selectedWorkout != null);
+        public RelayCommand RemoveWorkoutCommand => new RelayCommand(execute => RemoveWorkout(), canExecute => selectedWorkout != null);
         public RelayCommand AddWorkoutWindowCommand => new RelayCommand(execute => AddWorkoutWindow());
         public RelayCommand InfoBoxCommand => new RelayCommand(execute => InfoBox());
         public RelayCommand OpenUserDetailsWindowCommand => new RelayCommand(execute => OpenUserDetailsWindow());
@@ -75,6 +75,7 @@ namespace FITTRACK.ViewModel
                 Notes = "Överkropp"
             }
         };
+            Workouts = CurrentUser.Workouts; //Läger till träningarna i Workoutslistan
         }
 
 
@@ -143,7 +144,7 @@ namespace FITTRACK.ViewModel
 
             
         }
-        private void RemoveWorkout()
+        public void RemoveWorkout()
         {
             
                 MessageBoxResult result = MessageBox.Show("Är du säker på att du vill ta bort det valda passet?", "Ta bort", MessageBoxButton.YesNo, MessageBoxImage.Warning); //Fråga om du är säker på att du vill ta bort ditt pass
