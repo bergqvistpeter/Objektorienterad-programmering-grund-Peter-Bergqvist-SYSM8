@@ -24,7 +24,7 @@
                 </Grid.ColumnDefinitions>
                 <Button Grid.Column="0" Content="Lägg till Träning" FontSize="15" FontWeight="Bold" Background="Crimson" Command="{Binding AddWorkoutWindowCommand}"/>
                 <Button Grid.Column="1" Content="Ta bort Träning" FontSize="15" FontWeight="Bold" Background="Crimson" Command="{Binding RemoveWorkoutCommand}"/>
-                <Button Grid.Column="2" Content="Träningsinformation" FontSize="15" FontWeight="Bold" Background="Crimson"/>
+                <Button Grid.Column="2" Content="Träningsinformation" FontSize="15" FontWeight="Bold" Background="Crimson" Command="{Binding OpenWorkoutCommand}"/>
                 <Button Grid.Column="3" Content="Redigera Konto"  FontSize="15" FontWeight="Bold" Background="Crimson" Command="{Binding OpenUserDetailsWindowCommand}" />
                 <Button Grid.Column="4" Content="Logga ut"  FontSize="15" FontWeight="Bold" Background="Crimson" Command="{Binding LogOutToMainCommand}"/>
 
@@ -35,11 +35,11 @@
 
                 </Grid.ColumnDefinitions>
 
-                <DataGrid CanUserAddRows="False" CanUserDeleteRows="False" AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding CurrentUser.Workouts}" SelectedItem="{Binding SelectedWorkout, Mode=TwoWay}" FontSize="16" FontWeight="Bold" Height="300">
+                <DataGrid x:Name="WorkoutGrid" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" AutoGenerateColumns="False" ItemsSource="{Binding CurrentUser.Workouts, Mode=TwoWay}" SelectedItem="{Binding SelectedWorkout, Mode=TwoWay}" FontSize="16" FontWeight="Bold" Height="300">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Datum" Binding="{Binding Date}" Width="4*" />
-                        <DataGridTextColumn Header="Typ" Binding="{Binding Type}" Width="4*" />
-                        <DataGridTextColumn Header="Tid" Binding="{Binding Duration}" Width="2*" />
+                        <DataGridTextColumn Header="Datum" Binding="{Binding Date, UpdateSourceTrigger=PropertyChanged}" Width="4*" />
+                        <DataGridTextColumn Header="Typ" Binding="{Binding Type, UpdateSourceTrigger=PropertyChanged}" Width="4*" />
+                        <DataGridTextColumn Header="Tid" Binding="{Binding Duration, UpdateSourceTrigger=PropertyChanged}" Width="2*" />
 
                     </DataGrid.Columns>
 

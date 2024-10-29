@@ -15,6 +15,7 @@ namespace FITTRACK.ViewModel
     {
         public User CurrentUser => UserManager.Instance.CurrentUser;
         //Commands
+        public RelayCommand OpenWorkoutCommand => new RelayCommand(execute => OpenWorkout(), canExecute => selectedWorkout != null);
         public RelayCommand RemoveWorkoutCommand => new RelayCommand(execute => RemoveWorkout(), canExecute => selectedWorkout != null);
         public RelayCommand AddWorkoutWindowCommand => new RelayCommand(execute => AddWorkoutWindow());
         public RelayCommand InfoBoxCommand => new RelayCommand(execute => InfoBox());
@@ -53,28 +54,9 @@ namespace FITTRACK.ViewModel
         //Konstruktor
         public WorkoutsWindowViewModel() 
         {
+           
+        
 
-
-            CurrentUser.Workouts = new ObservableCollection<Workout>() { // läger till två träningar till user
-
-            new CardioWorkout
-            {
-                Date = DateTime.Now,
-                Type = "Cardio",
-                Duration = new TimeSpan(0, 30, 0),
-                CaloriesBurned = 300,
-                Notes = "Löpbandet"
-            },
-
-            new StrengthWorkout
-            {
-                Date = DateTime.Now,
-                Type = "Strength",
-                Duration = new TimeSpan(1, 0, 0),
-                CaloriesBurned = 300,
-                Notes = "Överkropp"
-            }
-        };
             Workouts = CurrentUser.Workouts; //Läger till träningarna i Workoutslistan
         }
 
@@ -136,6 +118,15 @@ namespace FITTRACK.ViewModel
 
                
             
+        }
+
+        public void OpenWorkout() 
+        {
+           
+            WorkoutsWindowViewModel workoutsWindowViewModel = new WorkoutsWindowViewModel();
+            WorkoutDetailsWindow workoutDetailsWindow = new WorkoutDetailsWindow(SelectedWorkout);
+            workoutDetailsWindow.Show();
+
         }
 
     }

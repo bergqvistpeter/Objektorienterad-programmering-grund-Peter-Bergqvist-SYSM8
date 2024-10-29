@@ -22,11 +22,12 @@ namespace FITTRACK.Model
         public double Weight { get; set; }
         public int UserID { get; set; }
        
-       public ObservableCollection<Workout> Workouts { get; set; } 
-        
+       public ObservableCollection<Workout> Workouts { get; set; }
+
         
 
-       public string ConfirmPassword;
+
+public string ConfirmPassword;
 
         
         //Konstruktor
@@ -38,7 +39,7 @@ namespace FITTRACK.Model
             this.Weight = weight;
             this.UserID = userID;
 
-            
+           
         }
 
 

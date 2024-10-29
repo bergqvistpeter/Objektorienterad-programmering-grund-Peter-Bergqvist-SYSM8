@@ -95,16 +95,28 @@ namespace FITTRACK.ViewModel
 
 
         //Konstruktor
-        public AddWorkoutWindowViewModel()
+        public AddWorkoutWindowViewModel(Workout workout)
         {
             WorkoutType = new ObservableCollection<string>()
             {
                 "Strength", "Cardio"
             };
             
-            inputDate = DateTime.Now; // Sätter dagens datum som default till träningspasset som ska läggas till
+            InputDate = workout.Date;
+            InputWorkoutType = workout.Type;
+            InputDuration = workout.Duration;
+            InputNotes = workout.Notes;
 
             
+        }
+        public AddWorkoutWindowViewModel() 
+        {
+            WorkoutType = new ObservableCollection<string>()
+            {
+                "Strength", "Cardio"
+            };
+
+            inputDate = DateTime.Now; // Sätter dagens datum som default till träningspasset som ska läggas till
         }
 
         private void SaveWorkout() 
