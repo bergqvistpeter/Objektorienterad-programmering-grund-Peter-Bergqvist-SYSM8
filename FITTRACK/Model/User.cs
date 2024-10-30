@@ -79,5 +79,9 @@ public string ConfirmPassword;
         { 
             UserManager.Users.Add(user);
         }
+        public void RemoveWorkout(Workout workout)
+        {
+            Workouts.Remove(workout);
+        }
     }
 }

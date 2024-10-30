@@ -35,7 +35,7 @@
 
                 </Grid.ColumnDefinitions>
 
-                <DataGrid x:Name="WorkoutGrid" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" AutoGenerateColumns="False" ItemsSource="{Binding CurrentUser.Workouts, Mode=TwoWay}" SelectedItem="{Binding SelectedWorkout, Mode=TwoWay}" FontSize="16" FontWeight="Bold" Height="300">
+                <DataGrid x:Name="WorkoutGrid" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" AutoGenerateColumns="False" ItemsSource="{Binding WorkoutView, Mode=TwoWay}" SelectedItem="{Binding SelectedWorkout, Mode=TwoWay}" FontSize="16" FontWeight="Bold" Height="300">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Datum" Binding="{Binding Date, UpdateSourceTrigger=PropertyChanged}" Width="4*" />
                         <DataGridTextColumn Header="Typ" Binding="{Binding Type, UpdateSourceTrigger=PropertyChanged}" Width="4*" />
@@ -46,7 +46,7 @@
                 </DataGrid>
 
             </Grid>
-            <Grid Width="600" Height="30">
+            <Grid Width="800" Height="30">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="10*"/>
                     <ColumnDefinition Width="5*"/>
@@ -59,11 +59,11 @@
                 </Grid.ColumnDefinitions>
                 <Label Content="Filtrera efter:"  FontSize="15" FontWeight="Bold"/>
                 <Label Content="Datum" Grid.Column="1" FontSize="15" FontWeight="Bold"/>
-                <ComboBox Grid.Column="2"/>
+                <ComboBox Grid.Column="2" ItemsSource="{Binding DateFilterOptions}" SelectedItem="{Binding SelectedDateFilterOptions, UpdateSourceTrigger=PropertyChanged}"/>
                 <Label Content="Typ" Grid.Column="3" FontSize="15" FontWeight="Bold"/>
-                <ComboBox Grid.Column="4"/>
+                <ComboBox Grid.Column="4" ItemsSource="{Binding WorkoutType}" SelectedItem="{Binding FilterType, UpdateSourceTrigger=PropertyChanged}"/>
                 <Label Content="Tid" Grid.Column="5" FontSize="15" FontWeight="Bold"/>
-                <ComboBox Grid.Column="6"/>
+                <ComboBox Grid.Column="6" ItemsSource="{Binding DurationFilterOptions}" SelectedItem="{Binding SelectedDurationFilterOption, UpdateSourceTrigger=PropertyChanged}"/>
                 <Button Grid.Column="7" Content="Filtrera"  FontSize="15" FontWeight="Bold" Background="Crimson" Command="{Binding FilteredWorkoutsCommand}"/>
 
 

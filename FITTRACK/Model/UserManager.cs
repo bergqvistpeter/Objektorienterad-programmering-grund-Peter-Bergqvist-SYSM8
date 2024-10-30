@@ -14,7 +14,7 @@ namespace FITTRACK.Model
         private static UserManager instance;
         public static UserManager Instance => instance ??= new UserManager();
         //Lista med användare
-        public static List<User> Users = new List<User> { new User("user", "password", "Sweden", "Vilket märke hade din första bil?", "Volvo", 100, 1)
+        public static ObservableCollection<User> Users = new ObservableCollection<User> { new User("user", "password", "Sweden", "Vilket märke hade din första bil?", "Volvo", 100, 1)
     {
         Workouts = new ObservableCollection<Workout>
         {
@@ -36,8 +36,11 @@ namespace FITTRACK.Model
             }
         }
     },
-    new User("admin", "password", "Sweden", "Vilket märke hade din första bil?", "Volvo", 100, 2)
-    
+    new AdminUser("admin", "password", "Sweden", "Vilket märke hade din första bil?", "Volvo", 100, 2)
+    {
+        Workouts = new ObservableCollection<Workout>()
+    }
+
     };
 
 

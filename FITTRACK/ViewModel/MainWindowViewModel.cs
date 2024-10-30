@@ -67,7 +67,8 @@ namespace FITTRACK.ViewModel
                    
                     return;
                 }
-               
+                
+
             }
             {
                 MessageBox.Show("Felaktigt Username", "Error", MessageBoxButton.OK, MessageBoxImage.Error);

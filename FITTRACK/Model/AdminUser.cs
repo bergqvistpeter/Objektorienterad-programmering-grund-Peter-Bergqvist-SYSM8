@@ -1,5 +1,7 @@
-﻿using System;
+﻿using FITTRACK.View;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,9 +15,23 @@ namespace FITTRACK.Model
         
         }
         //Metod
-        public void ManageAllWorkouts() 
-        { 
-        
+        // Metod för att hämta alla träningar
+        public ObservableCollection<Workout> GetAllWorkouts()
+        {
+            ObservableCollection<Workout> allWorkouts = new ObservableCollection<Workout>();
+
+            foreach (User user in UserManager.Users)
+            {
+                foreach (var workout in user.Workouts)
+                {
+                    allWorkouts.Add(workout); // Lägg till varje träning till ObservableCollection
+                }
+            }
+
+            return allWorkouts;
         }
+
+        public void ManageAllWorkouts() { }
+        
     }
 }
