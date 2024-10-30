@@ -110,9 +110,6 @@ namespace FITTRACK.ViewModel
             MessageBoxResult result = MessageBox.Show("Är du säker på att du vill avrbyta?", "Varning", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (result == MessageBoxResult.Yes)
             {
-                WorkoutsWindow workoutsWindow = new WorkoutsWindow(); //Skapar den nya SplashScreenen
-                workoutsWindow.Show();
-
                 foreach (Window window in Application.Current.Windows)  //går igenom öppna fönster
                 {
                     if (window is UserDetailsWindow) // om ett fönster som är öppet heter RegisterWindow. Stäng det

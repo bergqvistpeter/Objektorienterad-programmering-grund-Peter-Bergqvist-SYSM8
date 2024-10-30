@@ -129,5 +129,9 @@ namespace FITTRACK.ViewModel
 
         }
 
+        public void FilteredWorkouts() 
+        { 
+            
+        }
     }
 }

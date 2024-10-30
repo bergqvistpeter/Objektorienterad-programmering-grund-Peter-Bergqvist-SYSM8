@@ -107,20 +107,22 @@ namespace FITTRACK.ViewModel
                 "Strength", "Cardio"
             };
             
-
+            //Sätter värdena till properties som är bindade till window
             Date = workout.Date;
             Type = workout.Type;
             Duration = workout.Duration;
             Notes = workout.Notes;
             CaloriesBurned = workout.CaloriesBurned;
 
-            Workout = workout;
+            Workout = workout; //Sätter Selected Workout till Workout
         }
-        //Method
+        //Egenskaper för att Updatera Calories
         private double METStrength = 5;
         private double StaticWorkoutValue = 3.5;
         private double METRunning = 8;
-        private void UpdateCaloriesBurned() //Updaterar calorierna efterhand
+
+        //Metod
+        private void UpdateCaloriesBurned() //Updaterar calorierna direkt
         {
 
             if (Type == "Cardio")
@@ -153,6 +155,7 @@ namespace FITTRACK.ViewModel
         public void SaveWorkout(Workout workout) //Sparar och updaterar workouten
         {
             CurrentUser.Workouts.Remove(workout); //Tar bort från listan
+            //Sätter värdena från bindings till Workout
             workout.Date = Date;
             workout.Duration = Duration;
             workout.CaloriesBurned = CaloriesBurned;
@@ -173,24 +176,25 @@ namespace FITTRACK.ViewModel
 
         private void CopyToAddWorkoutWindow() //Metod för att öppna en Kopia av Workouten.
         {
-            if (Type == "Strength")
+            if (Type == "Strength") // Om typen är Strength Skapas en ny StrengthWorkout
             {
                 Workout copiedWorkout = new StrengthWorkout
-                {
+                {   //SÄtter värdena från binding till workout
                     Date = this.Date,
                     Type = this.Type,
                     Duration = this.Duration,
                     Notes = this.Notes,
                     CaloriesBurned = this.CaloriesBurned
                 };
-                AddWorkoutWindow addWorkoutWindow = new AddWorkoutWindow
+                AddWorkoutWindow addWorkoutWindow = new AddWorkoutWindow // Skapar AddWorkoutWindow
                 {
-                    DataContext = new WorkoutDetailsWindowViewModel(copiedWorkout)
+                    DataContext = new WorkoutDetailsWindowViewModel(copiedWorkout) // SKickar med Kopierar Workout
                 };
-                addWorkoutWindow.Show();
-            } else
+                addWorkoutWindow.Show(); // Visar nya AddWorkout
+            }
+            else if (Type == "Cardio")
             {
-                Workout copiedWorkout = new CardioWorkout
+                Workout copiedWorkout = new CardioWorkout // om Cardio är vald skapas en kopia av en CardioWorkout
                 {
                     Date = this.Date,
                     Type = this.Type,
@@ -198,7 +202,7 @@ namespace FITTRACK.ViewModel
                     Notes = this.Notes,
                     CaloriesBurned = this.CaloriesBurned
                 };
-                AddWorkoutWindow addWorkoutWindow = new AddWorkoutWindow() 
+                AddWorkoutWindow addWorkoutWindow = new AddWorkoutWindow()
                 {
                     DataContext = new AddWorkoutWindowViewModel(copiedWorkout)
                 };

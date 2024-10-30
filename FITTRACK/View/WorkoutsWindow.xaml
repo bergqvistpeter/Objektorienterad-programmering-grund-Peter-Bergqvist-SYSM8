@@ -46,13 +46,26 @@
                 </DataGrid>
 
             </Grid>
-            <Grid Width="200" Height="30">
+            <Grid Width="600" Height="30">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="4*"/>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="8*"/>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="8*"/>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="8*"/>
                     <ColumnDefinition Width="8*"/>
                 </Grid.ColumnDefinitions>
-                <Label Content="Sortera"  FontSize="15" FontWeight="Bold"/>
-                <ComboBox Grid.Column="1"/>
+                <Label Content="Filtrera efter:"  FontSize="15" FontWeight="Bold"/>
+                <Label Content="Datum" Grid.Column="1" FontSize="15" FontWeight="Bold"/>
+                <ComboBox Grid.Column="2"/>
+                <Label Content="Typ" Grid.Column="3" FontSize="15" FontWeight="Bold"/>
+                <ComboBox Grid.Column="4"/>
+                <Label Content="Tid" Grid.Column="5" FontSize="15" FontWeight="Bold"/>
+                <ComboBox Grid.Column="6"/>
+                <Button Grid.Column="7" Content="Filtrera"  FontSize="15" FontWeight="Bold" Background="Crimson" Command="{Binding FilteredWorkoutsCommand}"/>
+
 
             </Grid>
 
