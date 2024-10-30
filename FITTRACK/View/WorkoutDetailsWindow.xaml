@@ -27,25 +27,27 @@
                     <RowDefinition Height="100"/>
                 </Grid.RowDefinitions>
                 <Label Content="Datum:" HorizontalAlignment="Left" FontWeight="Bold" FontSize="16" Grid.Column="0" VerticalAlignment="Center"/>
-                <DatePicker Grid.Column="1" SelectedDate="{Binding Date, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <DatePicker Grid.Column="1" SelectedDate="{Binding Date, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding AreDatePickerLocked}"/>
                 <Label Content="Typ:" Grid.Row="1" HorizontalAlignment="Left" FontWeight="Bold" FontSize="16" Grid.Column="0" VerticalAlignment="Center"/>
-                <ComboBox Grid.Column="1" Grid.Row="1" ItemsSource="{Binding WorkoutType}" SelectedItem="{Binding Type, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <ComboBox Grid.Column="1" Grid.Row="1" ItemsSource="{Binding WorkoutType}" SelectedItem="{Binding Type, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding AreDatePickerLocked}"/>
                 <Label Content="Tid(TT:MM:SS):" Grid.Row="2" HorizontalAlignment="Left" FontWeight="Bold" FontSize="16" Grid.Column="0" VerticalAlignment="Center"/>
-                <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding Duration, Mode=TwoWay, StringFormat='hh\\:mm\\:ss', UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding Duration, Mode=TwoWay, StringFormat='hh\\:mm\\:ss', UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding AreInputsLocked}"/>
                 <Label Content="Kaloriförbrukning:" Grid.Row="3" HorizontalAlignment="Left" FontWeight="Bold" FontSize="16" Grid.Column="0" VerticalAlignment="Center"/>
                 <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding CaloriesBurned, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" IsReadOnly="True"/>
                 <Label Content="Anteckningar:" Grid.Row="4" HorizontalAlignment="Left" FontWeight="Bold" FontSize="16" Grid.Column="0" VerticalAlignment="Center"/>
-                <TextBox Grid.Column="1" Grid.Row="4" Text="{Binding Notes, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                <TextBox Grid.Column="1" Grid.Row="4" Text="{Binding Notes, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" IsReadOnly="{Binding AreInputsLocked}"/>
             </Grid>
-            <Grid Width="360" Height="30" Margin="10">
+            <Grid Width="400" Height="30" Margin="10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
+                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button Content="Updatera Pass" FontWeight="Bold" FontSize="16" Background="Crimson" Command="{Binding SaveWorkoutCommand}" />
-                <Button Content="Kopiera Pass" Grid.Column="1" FontWeight="Bold" FontSize="16" Background="Crimson" Command="{Binding CopyToAddWorkoutWindowCommand}"/>
-                <Button Content="Avbryt" Grid.Column="2" FontWeight="Bold" FontSize="16" Background="Crimson" Command="{Binding CancelWindowCommand}"/>
+                <Button Content="Redigera" Grid.Column="0" FontWeight="Bold" FontSize="16" Background="Crimson" Command="{Binding UnLocksInputsCommand}" />
+                <Button Content="Updatera" Grid.Column="1" FontWeight="Bold" FontSize="16" Background="Crimson" Command="{Binding SaveWorkoutCommand}" />
+                <Button Content="Kopiera" Grid.Column="2" FontWeight="Bold" FontSize="16" Background="Crimson" Command="{Binding CopyToAddWorkoutWindowCommand}"/>
+                <Button Content="Avbryt" Grid.Column="3" FontWeight="Bold" FontSize="16" Background="Crimson" Command="{Binding CancelWindowCommand}"/>
             </Grid>
 
         </StackPanel>

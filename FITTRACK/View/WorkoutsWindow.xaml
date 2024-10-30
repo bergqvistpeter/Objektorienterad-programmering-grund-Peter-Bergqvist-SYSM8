@@ -11,7 +11,6 @@
             <StackPanel Orientation="Horizontal">
                 <Label Content="Du är inloggad som:"  Height="30" Width="140" FontWeight="Bold" FontSize="14"/>
                 <TextBlock Height="30" Width="160" Text="{Binding CurrentUser.Username}" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold" FontSize="18" Foreground="Crimson"/>
-                <Button Height="30" Width="80" Content="Admin" FontWeight="Bold" FontSize="14"/>
                 <Button Height="30" Width="80" Content="Info" FontWeight="Bold" FontSize="14" Command="{Binding InfoBoxCommand}"/>
             </StackPanel>
             <Grid Width="800" Height="30" Background="Lightgray">

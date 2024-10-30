@@ -15,8 +15,10 @@ namespace FITTRACK.ViewModel
 {
     class WorkoutDetailsWindowViewModel : ViewModelBase
     {
+
         public User CurrentUser => UserManager.Instance.CurrentUser; //UserManager
         //Commands
+        public RelayCommand UnLocksInputsCommand => new RelayCommand(execute => UnlockInputs());
         public RelayCommand CopyToAddWorkoutWindowCommand => new RelayCommand(execute => CopyToAddWorkoutWindow()); //Command för att kopiera till AddWorkout, öppna det och att stänga fönstret.
         public RelayCommand CancelWindowCommand => new RelayCommand(execute => CancelWindow()); //Command för att avbryta att stänga fönstret.
         public RelayCommand SaveWorkoutCommand => new RelayCommand(execute => SaveWorkout(Workout)); //Command för att spara träning och att stänga fönstret.
@@ -98,6 +100,29 @@ namespace FITTRACK.ViewModel
             }
         }
 
+        private bool areInputsLocked;
+        public bool AreInputsLocked
+        {
+            get { return areInputsLocked; }
+            set
+            {
+                areInputsLocked = value;
+                OnPropertyChanged();
+            }
+        }
+        private bool areDatePickerLocked;
+        public bool AreDatePickerLocked
+        {
+            get { return areDatePickerLocked; }
+            set
+            {
+                areDatePickerLocked = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+
         //Konstruktor
 
         public WorkoutDetailsWindowViewModel(Workout workout)
@@ -115,6 +140,8 @@ namespace FITTRACK.ViewModel
             CaloriesBurned = workout.CaloriesBurned;
 
             Workout = workout; //Sätter Selected Workout till Workout
+            AreInputsLocked = true; // Låser rutorna i View
+            AreDatePickerLocked = false; //Låser datepickern
         }
         //Egenskaper för att Updatera Calories
         private double METStrength = 5;
@@ -218,6 +245,14 @@ namespace FITTRACK.ViewModel
                 }
             }
         }
+
+        private void UnlockInputs()
+        {
+            AreInputsLocked = false;
+            AreDatePickerLocked = true;
+        }
+
+        
 
     }
 }
