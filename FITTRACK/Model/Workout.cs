@@ -14,15 +14,8 @@ namespace FITTRACK.Model
         public TimeSpan Duration { get; set; }
         public double CaloriesBurned { get; set; }
         public string Notes { get; set; }
-        //Konstruktor
-        //public Workout(DateTime date, string type, TimeSpan duration, double CaloriesBurned, string notes) 
-        //{ 
-        //    this.Date = date;
-        //    this.Type = type;
-        //    this.Duration = duration;
-        //    this.CaloriesBurned = CaloriesBurned;
-        //    this.Notes = notes;
-        //}
+        
+       
         //Metod
         public abstract double CalculateCaloriesBurnd(double weight); 
         

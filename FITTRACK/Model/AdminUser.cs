@@ -31,7 +31,7 @@ namespace FITTRACK.Model
             return allWorkouts;
         }
 
-        public void ManageAllWorkouts() { }
+        public void ManageAllWorkouts() { } //Inte haft någon navändning för denna metoden, då jag löst det på annat sätt.
         
     }
 }

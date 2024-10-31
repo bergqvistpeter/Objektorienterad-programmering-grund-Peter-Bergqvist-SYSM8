@@ -13,8 +13,9 @@ using System.Windows;
 namespace FITTRACK.Model
 {
     public class User : Person
-    {   //Egenskaper
+    {  //USerManager
         public User CurrentUser => UserManager.Instance.CurrentUser;
+        //Egenskaper
         public string Country { get; set; }
         public string SecurityQuestion { get; set; }
         public string SecurityAnswer { get; set; }
@@ -87,11 +88,11 @@ public string ConfirmPassword;
         }
 
 
-        public static void AddUser(User user) 
+        public static void AddUser(User user) //Metod för att lägga till användare i Users
         { 
             UserManager.Users.Add(user);
         }
-        public void RemoveWorkout(Workout workout)
+        public void RemoveWorkout(Workout workout) //Metod för att ta bort workout
         {
             Workouts.Remove(workout);
         }

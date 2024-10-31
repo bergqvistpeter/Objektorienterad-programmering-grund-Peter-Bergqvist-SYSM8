@@ -229,9 +229,9 @@ namespace FITTRACK.ViewModel
                     Notes = this.Notes,
                     CaloriesBurned = this.CaloriesBurned
                 };
-                AddWorkoutWindow addWorkoutWindow = new AddWorkoutWindow()
+                AddWorkoutWindow addWorkoutWindow = new AddWorkoutWindow() //Skapar AddworkoutWindow
                 {
-                    DataContext = new AddWorkoutWindowViewModel(copiedWorkout)
+                    DataContext = new AddWorkoutWindowViewModel(copiedWorkout) //Skickar med kopierad workout
                 };
                 addWorkoutWindow.Show();
 
@@ -246,7 +246,7 @@ namespace FITTRACK.ViewModel
             }
         }
 
-        private void UnlockInputs()
+        private void UnlockInputs() //Låser upp alla fält så att du kan ändra
         {
             AreInputsLocked = false;
             AreDatePickerLocked = true;

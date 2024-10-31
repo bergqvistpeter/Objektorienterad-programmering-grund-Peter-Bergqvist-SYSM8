@@ -18,7 +18,7 @@ namespace FITTRACK.ViewModel
     {   //UserManager
         public User CurrentUser => UserManager.Instance.CurrentUser; //CurrentUser
         //Command
-        public RelayCommand SaveWorkoutCommand => new RelayCommand(execute => SaveWorkout());
+        public RelayCommand SaveWorkoutCommand => new RelayCommand(execute => SaveWorkout()); // Command för att spara workouten
         public RelayCommand CancelWindowCommand => new RelayCommand(execute => CancelWindow()); //Command för att avbryta att stänga fönstret.
         //ObservableCollections
         private ObservableCollection<Workout> workouts;
@@ -164,7 +164,7 @@ namespace FITTRACK.ViewModel
 
         }
 
-        private double GetWeight()
+        private double GetWeight() //Metod för att få CurrentUser Weight
         {
             return CurrentUser.Weight;
         }

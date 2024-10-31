@@ -99,7 +99,7 @@ namespace FITTRACK.ViewModel
             if (string.IsNullOrWhiteSpace(InputPassword) || string.IsNullOrWhiteSpace(inputConfirmPassword)) //Kontrollerar så ass båda löserordsrutorna är ifyllda
                 
             {
-                MessageBox.Show("Båda lösenorden är inte ifyllda");
+                MessageBox.Show("Båda lösenorden är inte ifyllda", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 

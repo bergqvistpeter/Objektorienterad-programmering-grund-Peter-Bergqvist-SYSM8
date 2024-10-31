@@ -13,14 +13,16 @@ using System.Windows.Input;
 namespace FITTRACK.ViewModel
 {
     class MainWindowViewModel : ViewModelBase
-    {   //Commands
+    {   //UserManager
+        public User CurrentUser => UserManager.Instance.CurrentUser;
+
+        //Commands
         public RelayCommand ForgotPasswordCommand => new RelayCommand(execute => ForgotPassword()); //Command som skapar en 2FA kod
         public RelayCommand Generate2FACommand => new RelayCommand(execute => Generate2FA()); //Command som skapar en 2FA kod
         public RelayCommand SignInCommand => new RelayCommand(execute => SignIn()); //Command som logga in dig
         public RelayCommand OpenRegisterWindowCommand => new RelayCommand(execute => OpenRegisterWindow()); //Command som öppnar nytt fönster
         public RelayCommand CloseProgramWindowCommand => new RelayCommand(execute => CloseProgramWindow()); //Command som stänger programmet
-        //UserManager
-        public User CurrentUser => UserManager.Instance.CurrentUser;
+       
         //Egenskaper
         public string username;
         public string Username

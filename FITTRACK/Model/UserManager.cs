@@ -12,7 +12,7 @@ namespace FITTRACK.Model
     public class UserManager : ViewModelBase
     {
         private static UserManager instance;
-        public static UserManager Instance => instance ??= new UserManager();
+        public static UserManager Instance => instance ??= new UserManager(); //SKapar User Manager
         //Lista med användare
         public static ObservableCollection<User> Users = new ObservableCollection<User> { new User("user", "password", "Sweden", "Vilket märke hade din första bil?", "Volvo", 100, 1)
     {
@@ -53,7 +53,7 @@ namespace FITTRACK.Model
 
         }
 
-        public void SetCurrentUser(User user)
+        public void SetCurrentUser(User user) //Sätter användare
         {
             CurrentUser = user;
             

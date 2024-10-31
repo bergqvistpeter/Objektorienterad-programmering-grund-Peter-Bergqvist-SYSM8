@@ -228,7 +228,7 @@ namespace FITTRACK.ViewModel
                 SliderValue <= 0) 
             
                 {
-                    MessageBox.Show("Alla fält är inte ifylda korrekt");
+                    MessageBox.Show("Alla fält är inte ifyllda korrekt");
                     return;
                 }
                 if (InputUsername.Length < 3 || InputUsername.Length > 15)  //Kontrollerar att användarnamnet har rätt längd

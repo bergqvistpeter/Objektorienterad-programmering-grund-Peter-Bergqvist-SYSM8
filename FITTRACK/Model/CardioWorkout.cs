@@ -15,11 +15,7 @@ namespace FITTRACK.Model
         private double StaticWorkoutValue = 3.5;
         
 
-        //Konstruktor
-        //public CardioWorkout(DateTime date, string type, TimeSpan duration, double CaloriesBurned, string notes) : base(date, type, duration, CaloriesBurned, notes)
-        //{
-            
-        //}
+        
 
         //Metod 
         public override double CalculateCaloriesBurnd(double weight) // Metod som räknar ut Kalorier
