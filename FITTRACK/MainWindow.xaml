@@ -14,6 +14,8 @@
             <TextBox x:Name="UsernameInput" HorizontalAlignment="Center" Width="120" Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"/>
             <TextBlock Text="Password" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold"/>
             <TextBox x:Name="passwordInput" HorizontalAlignment="Center" Width="120" Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBlock Text="2FA Authentication" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold"/>
+            <TextBox x:Name="AuthInput" HorizontalAlignment="Center" Width="120" Text="{Binding Authentication, UpdateSourceTrigger=PropertyChanged}"/>
 
             <StackPanel Orientation="Vertical">
                 <Grid Width="170" HorizontalAlignment="Center" Margin="5">
@@ -29,11 +31,16 @@
                     </Grid.RowDefinitions>
                     <Button Grid.Column="0" Content="Logga in" Background="Crimson" FontWeight="Bold" Command="{Binding SignInCommand}"/>
                     <Button Grid.Column="1" Content="Registrera" Background="Crimson" FontWeight="Bold" Command="{Binding OpenRegisterWindowCommand}"/>
-                    <Button Grid.Column="0" Grid.Row="1" Content="Glömt lösen?" Background="Crimson" FontWeight="Bold"/>
+                    <Button Grid.Column="0" Grid.Row="1" Content="Glömt lösen?" Background="Crimson" FontWeight="Bold" Command="{Binding ForgotPasswordCommand}"/>
                     <Button Grid.Column="1" Grid.Row="1" Content="Stäng" Background="Crimson" FontWeight="Bold" Command="{Binding CloseProgramWindowCommand}"/>
                 </Grid>
                 
             </StackPanel>
+
+            <Grid>
+                <Button Grid.Column="0" Content="2FA Generator" Background="Crimson" FontWeight="Bold" Command="{Binding Generate2FACommand}" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+
+            </Grid>
         </StackPanel>
     </Grid>
 </Window>

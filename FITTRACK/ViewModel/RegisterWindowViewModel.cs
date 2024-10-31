@@ -238,7 +238,7 @@ namespace FITTRACK.ViewModel
                 }
                 if (!isPasswordValid) // Kontrulerar att lösenordet innehåller specialtecken
                 {
-                    MessageBox.Show("Lösenordet måste innehålla minst 8 tecken, 1 siffra och 1 specialtecken");
+                    MessageBox.Show("Lösenordet måste innehålla minst 8 tecken varav minst en(1) bokstav, en(1) siffra och ett(1) specialtecken");
                     return;
                 }
 

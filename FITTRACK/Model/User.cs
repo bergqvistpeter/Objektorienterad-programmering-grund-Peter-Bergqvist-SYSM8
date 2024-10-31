@@ -57,7 +57,7 @@ public string ConfirmPassword;
                 WorkoutsWindow workoutsWindow = new WorkoutsWindow();
                 workoutsWindow.Show();
                 Application.Current.MainWindow.Close();
-                MessageBox.Show($"Välkommen {Username}","Välkommen!", MessageBoxButton.OK, MessageBoxImage.None);
+                
                 
 
             }
@@ -69,12 +69,24 @@ public string ConfirmPassword;
 
 
         }
-        public void ResetPassword(string securityAnswer) 
-        { 
+        public void ResetPassword(string username) 
+        {
+            foreach (User user in UserManager.Users)
+            {
+                if (user.Username == username)
+                {
+                    UserManager.Instance.SetCurrentUser(this);
+
+                }
+            }
+
             
+            ForgotPasswordWindow addWorkoutWindow = new ForgotPasswordWindow(); //Skapar det nya Workout fönstret
+            addWorkoutWindow.Show(); //Öppnar det nya workoutfönstret
+
         }
 
-        
+
         public static void AddUser(User user) 
         { 
             UserManager.Users.Add(user);
