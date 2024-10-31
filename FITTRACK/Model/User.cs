@@ -57,9 +57,16 @@ public string ConfirmPassword;
 
                 WorkoutsWindow workoutsWindow = new WorkoutsWindow();
                 workoutsWindow.Show();
-                Application.Current.MainWindow.Close();
-                
-                
+                foreach (Window window in Application.Current.Windows)  //går igenom öppna fönster
+                {
+                    if (window is MainWindow) // om ett fönster som är öppet heter WorkoutDetailWindow. Stäng det
+                    {
+                        window.Close();
+                        break;
+                    }
+                }
+
+
 
             }
 

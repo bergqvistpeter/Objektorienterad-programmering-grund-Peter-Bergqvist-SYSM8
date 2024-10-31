@@ -256,7 +256,10 @@ namespace FITTRACK.ViewModel
             if (InputPassword == inputConfirmPassword) //Kontrollerar om lösenordet är samma
             {
 
-                NewUser = new User($"{InputUsername}", $"{InputPassword}", $"{SelectedCountry}", $"{SelectedSecurityQuestion}", $"{SecurityQuestionAnswer}", SliderValue, UserManager.Users.Count + 1); //skapar ny användare
+                NewUser = new User($"{InputUsername}", $"{InputPassword}", $"{SelectedCountry}", $"{SelectedSecurityQuestion}", $"{SecurityQuestionAnswer}", SliderValue, UserManager.Users.Count + 1) //skapar ny användare och workout list
+                { 
+                    Workouts = new ObservableCollection<Workout>() 
+                }; 
                 User.AddUser(newUser); //Lägger till ny användare
                 MessageBox.Show("Ny användare har skapats", "Välkommnen!");
                 MainWindow mainWindow = new MainWindow(); //Skapar den nya SplashScreenen
