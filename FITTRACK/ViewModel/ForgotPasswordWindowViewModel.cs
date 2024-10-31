@@ -15,8 +15,8 @@ namespace FITTRACK.ViewModel
     {   //UserManager
         public User CurrentUser => UserManager.Instance.CurrentUser;
         //Commands
-        public RelayCommand SetNewPasswordCommand => new RelayCommand(execute => SetNewPassword());
-        public RelayCommand ConfirmSecurityCommand => new RelayCommand(execute => ConfirmSecurity());
+        public RelayCommand SetNewPasswordCommand => new RelayCommand(execute => SetNewPassword()); //Updaterar ditt password
+        public RelayCommand ConfirmSecurityCommand => new RelayCommand(execute => ConfirmSecurity()); //Kontrollerar om svaret är rätt på security question
         public RelayCommand CancelWindowCommand => new RelayCommand(execute => CancelWindow()); //Command för att avbryta och att stänga fönstret.
 
         //Egenskaper
@@ -70,14 +70,14 @@ namespace FITTRACK.ViewModel
         public ForgotPasswordWindowViewModel()
 
         {
-            IsPasswordsLocked = false;
+            IsPasswordsLocked = false; // Sätter värdet till password delen IsEnabled.
         }
-
-        public void ConfirmSecurity()
+        //Metoder
+        public void ConfirmSecurity() //Metod som kontrollerar att lösenordet är rätt.
         {
-            if (inputSecurityAnswer != null)
+            if (inputSecurityAnswer != null) // Kollar så att där är ett svar inmatat
             {
-                if (CurrentUser.SecurityAnswer == InputSecurityAnswer)
+                if (CurrentUser.SecurityAnswer == InputSecurityAnswer) // Om svaret stämmer överrens så sätts Passowrdboxarna till IsEnabled=True
 
                 {
                     IsPasswordsLocked = true;
@@ -85,26 +85,32 @@ namespace FITTRACK.ViewModel
             }
             else
             {
-                MessageBox.Show("Inget svar är inmatat, vänligen mata in ett svar", "Error", MessageBoxButton.OK);
+                MessageBox.Show("Inget svar är inmatat, vänligen mata in ett svar", "Error", MessageBoxButton.OK); //Om inget är inmatat får man ett felmeddelande
             }
 
         }
 
-        public void SetNewPassword() 
+        public void SetNewPassword() // Metod som kontrollerar inmatade passwordet, att det är korrekt
         {
             bool isPasswordValid = InputPassword.Length >= 8 &&  //Variabel för att kontrollera om Passwordet är gilitigt
                   InputPassword.Any(char.IsDigit) &&
                   InputPassword.Any(ch => "!@#$%^&*()_+-={}[]:;\"'<>,.?/\\|~`".Contains(ch)) &&
                   InputPassword.Any(char.IsLetter);
+            if (string.IsNullOrWhiteSpace(InputPassword) || string.IsNullOrWhiteSpace(inputConfirmPassword)) //Kontrollerar så ass båda löserordsrutorna är ifyllda
+                
+            {
+                MessageBox.Show("Båda lösenorden är inte ifyllda");
+                return;
+            }
 
-            if (!isPasswordValid) // Kontrulerar att lösenordet innehåller specialtecken
+            if (!isPasswordValid) // Kontrollerar att lösenordet innehåller alla variabler som krävs
             {
                 MessageBox.Show("Lösenordet måste innehålla minst 8 tecken varav minst en(1) bokstav, en(1) siffra och ett(1) specialtecken","Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            if (InputPassword == InputConfirmPassword) 
+            if (InputPassword == InputConfirmPassword)  //Jämför passwordboxarna
             { 
-                CurrentUser.Password = InputPassword;
+                CurrentUser.Password = InputPassword; //Sätter det nya passwordet
                 MessageBox.Show("Lösenordet har uppdaterats");
                 
                 foreach (Window window in Application.Current.Windows)  //går igenom öppna fönster

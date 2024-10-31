@@ -65,7 +65,7 @@ namespace FITTRACK.ViewModel
             }
         }
 
-        private string Temp2FA;
+        private string Temp2FA; // Tillfällig variabel som används för att lagra den genererade 2fa.
 
         public MainWindowViewModel()
         {
@@ -80,7 +80,7 @@ namespace FITTRACK.ViewModel
             {
                 if (user.Username == Username)
                 {
-                    if (Authentication == Temp2FA)
+                    if (Authentication == Temp2FA) // Jämför authenticatorn
                     {
                         user.SignIn(Username, Password);
 
@@ -116,25 +116,25 @@ namespace FITTRACK.ViewModel
         {
             Random random = new Random();
             int number = random.Next(0, 1000000); // Genererar ett tal mellan 0 och 999999
-            Temp2FA = number.ToString("D6"); // Formaterar talet som 6 siffror med ledande nollor
+            Temp2FA = number.ToString("D6"); // Formaterar talet som 6 siffror med ledande nollor och sätter den till variablen
             MessageBox.Show($"Ett mail har skickats med din authentication kod ({Temp2FA})", "2FAAuthentication", MessageBoxButton.OK, MessageBoxImage.Information);
         }
         private void ForgotPassword()
         {
-            if (!string.IsNullOrEmpty(Username))
+            if (!string.IsNullOrEmpty(Username)) // Kontrollerar så att Username inte är tomt
 
             {
 
-                foreach (User user in UserManager.Users)
+                foreach (User user in UserManager.Users)    //Går igenom lista med Users
                 {
-                    if (user.Username == Username)
+                    if (user.Username == Username) // om användarnamnet finns
                     {
-                        user.ResetPassword(Username);
+                        user.ResetPassword(Username); // skickar vi usernamnet till en metod i USerklassen, där vi sätter CurrentUser och öppnar nytt fönster
                         return;
                     }
                     else
                     {
-                        MessageBox.Show("Användaren finns inte", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show("Användaren finns inte", "Error", MessageBoxButton.OK, MessageBoxImage.Error); //Felmeddelande om användaren inte finns
                     }
 
 
@@ -142,7 +142,7 @@ namespace FITTRACK.ViewModel
             }
             else    
             {
-                MessageBox.Show("Vänligen fyll i Username på den användaren som flömt lösenordet", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Vänligen fyll i Username på den användaren som flömt lösenordet", "Error", MessageBoxButton.OK, MessageBoxImage.Error); // Felmeddelande om inget är ifyllt
             }
         }
 

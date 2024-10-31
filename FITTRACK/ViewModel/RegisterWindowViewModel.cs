@@ -22,7 +22,7 @@ namespace FITTRACK.ViewModel
         public RelayCommand CreateNewUserCommand => new RelayCommand(execute => CreateNewUser());
         public RelayCommand CancelWindowCommand => new RelayCommand(execute => CancelWindow()); //COmmand för att avbryta att stänga fönstret.
 
-        //Egenskaper
+        //ObservableCollections
         private ObservableCollection<string> countries;
 
         public ObservableCollection<string> Countries
@@ -46,7 +46,7 @@ namespace FITTRACK.ViewModel
                 OnPropertyChanged();
             }
         }
-
+        //Egenskaper
         private User newUser;
         public User NewUser
         {
@@ -142,7 +142,7 @@ namespace FITTRACK.ViewModel
         }
 
 
-
+        //Konstruktor
         public RegisterWindowViewModel()
 
         {
@@ -251,38 +251,38 @@ namespace FITTRACK.ViewModel
                     return;
                 }
                 
-            }  
-            
+            }
+
             if (InputPassword == inputConfirmPassword) //Kontrollerar om lösenordet är samma
             {
 
-                            NewUser = new User($"{InputUsername}", $"{InputPassword}", $"{SelectedCountry}", $"{SelectedSecurityQuestion}", $"{SecurityQuestionAnswer}", SliderValue, UserManager.Users.Count + 1); //skapar ny användare
-                            User.AddUser(newUser); //Lägger till ny användare
-                            MessageBox.Show("Ny användare har skapats", "Välkommnen!");
-                            MainWindow mainWindow = new MainWindow(); //Skapar den nya SplashScreenen
-                            mainWindow.Show();
+                NewUser = new User($"{InputUsername}", $"{InputPassword}", $"{SelectedCountry}", $"{SelectedSecurityQuestion}", $"{SecurityQuestionAnswer}", SliderValue, UserManager.Users.Count + 1); //skapar ny användare
+                User.AddUser(newUser); //Lägger till ny användare
+                MessageBox.Show("Ny användare har skapats", "Välkommnen!");
+                MainWindow mainWindow = new MainWindow(); //Skapar den nya SplashScreenen
+                mainWindow.Show();
 
-                            foreach (Window window in Application.Current.Windows)  //går igenom öppna fönster
-                            {
-                                if (window is RegisterWindow) // om ett fönster som är öppet heter RegisterWindow. Stäng det
-                                {
-                                    window.Close();
-                                    break;
-                                }
-                            }
-
-                            
-
-                        }
-                        else
-                        {
-                            MessageBox.Show("Passworden matchar inte");
-                        }
+                foreach (Window window in Application.Current.Windows)  //går igenom öppna fönster
+                {
+                    if (window is RegisterWindow) // om ett fönster som är öppet heter RegisterWindow. Stäng det
+                    {
+                        window.Close();
+                        break;
                     }
+                }
+
+
+
+            }
+            else
+            {
+                MessageBox.Show("Passworden matchar inte");
+            }
+        }
                 
 
             
 
-        }
     }
+}
 

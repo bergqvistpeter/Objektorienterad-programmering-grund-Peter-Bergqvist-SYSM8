@@ -46,7 +46,7 @@ public string ConfirmPassword;
         
 
         //Metod
-        public override void SignIn(string username, string password)
+        public override void SignIn(string username, string password) // Metod för att logga in och öppna WorkoutsWindow och stänga MainWindow
         {
             if (Password == password && Username == username)
 
@@ -69,7 +69,7 @@ public string ConfirmPassword;
 
 
         }
-        public void ResetPassword(string username) 
+        public void ResetPassword(string username) //Metod för att sätta CurrentUser och öppna forgotten Password
         {
             foreach (User user in UserManager.Users)
             {

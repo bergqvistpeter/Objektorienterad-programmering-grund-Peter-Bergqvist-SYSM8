@@ -15,7 +15,7 @@ using static FITTRACK.ViewModel.WorkoutsWindowViewModel;
 namespace FITTRACK.ViewModel
 {
     class WorkoutsWindowViewModel : ViewModelBase
-    {
+    {   //UserManager
         public User CurrentUser => UserManager.Instance.CurrentUser;
 
         //Commands
@@ -129,18 +129,18 @@ namespace FITTRACK.ViewModel
         //Konstruktor
         public WorkoutsWindowViewModel() 
         {
-            WorkoutType = new ObservableCollection<string>()
+            WorkoutType = new ObservableCollection<string>() //sätter värden till typ
             {
                 "Alla","Strength", "Cardio"
             };
-            DateFilterOptions = new ObservableCollection<string>
+            DateFilterOptions = new ObservableCollection<string> //sätter värden till datum
         {
             "Alla",
             "Idag",
             "Senaste Veckan",
             "Senaste Månaden"
         };
-            DurationFilterOptions = new ObservableCollection<string>
+            DurationFilterOptions = new ObservableCollection<string> //Sätter värden till duration
         {
             "All",
             "<20 min",
@@ -205,7 +205,7 @@ namespace FITTRACK.ViewModel
         }
         private void InfoBox() //InfoBox som öppnar ett fönster med info
         {
-            MessageBox.Show("FitTrack startades 2024.\n\nVi erbjuder en App för att hantera dina träningar på ett enkelt och smidigt sätt.","FitTrack Info", MessageBoxButton.OK);
+            MessageBox.Show("FitTrack startades 2024.\n\nVi erbjuder en App för att hantera dina träningar på ett enkelt och smidigt sätt.\nPå denna sida kan du lägga till, ta bort, få information om ditt pass,\nredigera användare och logga ut.","FitTrack Info", MessageBoxButton.OK);
         }
         
         private void AddWorkoutWindow()
@@ -251,7 +251,7 @@ namespace FITTRACK.ViewModel
             }
         }
 
-        private void RefreshWorkouts()
+        private void RefreshWorkouts() //Updaterar listan
         {
             var currentUser = UserManager.Instance.CurrentUser;
 
