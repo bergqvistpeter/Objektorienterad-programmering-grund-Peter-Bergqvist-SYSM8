@@ -281,7 +281,9 @@ namespace FITTRACK.ViewModel
 
         private void ExecuteFilterWorkouts()
         {
+            RefreshWorkouts();  //Uppdaterar listan
             WorkoutView.Refresh(); // Uppdatera vyn för att tillämpa filter
+        
         }
 
         // Metod för att filtrera träningspass baserat på kriterier

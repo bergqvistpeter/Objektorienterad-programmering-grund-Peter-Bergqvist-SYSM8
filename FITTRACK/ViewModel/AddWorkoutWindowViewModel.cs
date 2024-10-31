@@ -139,7 +139,7 @@ namespace FITTRACK.ViewModel
                 workout.CaloriesBurned = tempCaloriesBurned; //Sätter värdet till CaloriesBurned
                 CurrentUser.Workouts.Add(workout); // Läger till det i User Workouts
                 Workouts = CurrentUser.Workouts; // updaterar workoutlistan
-
+                
             }
             else //Om inte strength är ifylld, då är det ett Cardio pass
             {

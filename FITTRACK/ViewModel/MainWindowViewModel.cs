@@ -123,31 +123,33 @@ namespace FITTRACK.ViewModel
         }
         private void ForgotPassword()
         {
-            if (!string.IsNullOrEmpty(Username)) // Kontrollerar så att Username inte är tomt
+            if (string.IsNullOrEmpty(Username)) // Kontrollerar så att Username inte är tomt
 
             {
+                MessageBox.Show("Vänligen fyll i Username på den användaren som glömt lösenordet", "Error", MessageBoxButton.OK, MessageBoxImage.Error); // Felmeddelande om inget är ifyllt
+            }
 
-                foreach (User user in UserManager.Users)    //Går igenom lista med Users
+            foreach (User user in UserManager.Users)    //Går igenom lista med Users
+            {
+                if (user.Username == Username) // om användarnamnet finns
                 {
-                    if (user.Username == Username) // om användarnamnet finns
-                    {
-                        user.ResetPassword(Username); // skickar vi usernamnet till en metod i USerklassen, där vi sätter CurrentUser och öppnar nytt fönster
-                        return;
-                    }
-                    else
-                    {
-                        MessageBox.Show("Användaren finns inte", "Error", MessageBoxButton.OK, MessageBoxImage.Error); //Felmeddelande om användaren inte finns
-                    }
-
-
+                    user.ResetPassword(Username); // skickar vi usernamnet till en metod i USerklassen, där vi sätter CurrentUser och öppnar nytt fönster
+                    return;
                 }
-            }
-            else    
-            {
-                MessageBox.Show("Vänligen fyll i Username på den användaren som flömt lösenordet", "Error", MessageBoxButton.OK, MessageBoxImage.Error); // Felmeddelande om inget är ifyllt
-            }
-        }
+            }      
+                    
+            MessageBox.Show("Användaren finns inte", "Error", MessageBoxButton.OK, MessageBoxImage.Error); //Felmeddelande om användaren inte finns
+                    
 
+
+        } 
     }
+            
+            
+                
+            
 }
+
+   
+
 
