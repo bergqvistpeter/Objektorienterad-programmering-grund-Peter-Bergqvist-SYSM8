@@ -56,6 +56,7 @@ namespace FITTRACK.ViewModel
                 OnPropertyChanged();
             }
         }
+        //Temp Egenskaper för att sätta ingångsvärdet. När man väljer cancel sen så får man tillbaka dem.
         private string tempUsername;
         private string tempPassword;
         private string tempCountry;
@@ -107,6 +108,7 @@ namespace FITTRACK.ViewModel
                 "Vem är din favorit författare?"
 
             };
+            // här sätter vi värdena till cancelvariablerna
             tempUsername = CurrentUser.Username;
             tempPassword = CurrentUser.Password;
             tempCountry = CurrentUser.Country;
@@ -123,6 +125,7 @@ namespace FITTRACK.ViewModel
             MessageBoxResult result = MessageBox.Show("Är du säker på att du vill avrbyta?", "Varning", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (result == MessageBoxResult.Yes)
             {
+                //Här återställer vi värdena om vi tar cancel
                 CurrentUser.Username = tempUsername;
                 CurrentUser.Password = tempPassword;
                 CurrentUser.Country = tempCountry;
