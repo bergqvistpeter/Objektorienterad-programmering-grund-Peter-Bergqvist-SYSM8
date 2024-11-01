@@ -18,7 +18,7 @@ namespace FITTRACK.ViewModel
 
         public User CurrentUser => UserManager.Instance.CurrentUser; //UserManager
         //Commands
-        public RelayCommand UnLocksInputsCommand => new RelayCommand(execute => UnlockInputs());
+        public RelayCommand UnLocksInputsCommand => new RelayCommand(execute => UnlockInputs());//Låser upp knapparna
         public RelayCommand CopyToAddWorkoutWindowCommand => new RelayCommand(execute => CopyToAddWorkoutWindow()); //Command för att kopiera till AddWorkout, öppna det och att stänga fönstret.
         public RelayCommand CancelWindowCommand => new RelayCommand(execute => CancelWindow()); //Command för att avbryta att stänga fönstret.
         public RelayCommand SaveWorkoutCommand => new RelayCommand(execute => SaveWorkout(Workout)); //Command för att spara träning och att stänga fönstret.
@@ -181,6 +181,12 @@ namespace FITTRACK.ViewModel
         }
         public void SaveWorkout(Workout workout) //Sparar och updaterar workouten
         {
+            if (string.IsNullOrWhiteSpace(Type) || string.IsNullOrWhiteSpace(Notes) || Date == DateTime.MinValue || Duration == TimeSpan.Zero)  //Kontrollerar så att alla fält är ifyllda
+            {
+                MessageBox.Show("Alla uppgifter är inte korrekt ifyllda"); // om inte allt är ifyllt korrekt visas denna
+                return;
+            }
+
             CurrentUser.Workouts.Remove(workout); //Tar bort från listan
             //Sätter värdena från bindings till Workout
             workout.Date = Date;
