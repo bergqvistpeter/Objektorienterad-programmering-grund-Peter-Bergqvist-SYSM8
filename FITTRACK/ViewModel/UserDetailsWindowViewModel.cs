@@ -56,6 +56,12 @@ namespace FITTRACK.ViewModel
                 OnPropertyChanged();
             }
         }
+        private string tempUsername;
+        private string tempPassword;
+        private string tempCountry;
+        private double tempWeight;
+        private string tempSecurityQuestion;
+        private string tempSecurityAnswer;
 
         //Konstruktor
         public UserDetailsWindowViewModel() 
@@ -101,6 +107,13 @@ namespace FITTRACK.ViewModel
                 "Vem är din favorit författare?"
 
             };
+            tempUsername = CurrentUser.Username;
+            tempPassword = CurrentUser.Password;
+            tempCountry = CurrentUser.Country;
+            tempWeight = CurrentUser.Weight;
+            tempSecurityQuestion = CurrentUser.SecurityQuestion;
+            tempSecurityAnswer = CurrentUser.SecurityAnswer;
+        
         }
 
 
@@ -110,6 +123,13 @@ namespace FITTRACK.ViewModel
             MessageBoxResult result = MessageBox.Show("Är du säker på att du vill avrbyta?", "Varning", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (result == MessageBoxResult.Yes)
             {
+                CurrentUser.Username = tempUsername;
+                CurrentUser.Password = tempPassword;
+                CurrentUser.Country = tempCountry;
+                CurrentUser.Weight = tempWeight;
+                CurrentUser.SecurityQuestion = tempSecurityQuestion;
+                CurrentUser.SecurityAnswer = tempSecurityAnswer;
+
                 foreach (Window window in Application.Current.Windows)  //går igenom öppna fönster
                 {
                     if (window is UserDetailsWindow) // om ett fönster som är öppet heter RegisterWindow. Stäng det
